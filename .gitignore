@@ -1,6 +1,8 @@
 /node_modules
 refresh_token.txt
 .env
+.jest-cache
+.husky
 # Logs
 npm-debug.log*
 yarn-debug.log*
