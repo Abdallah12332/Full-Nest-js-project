@@ -1,1 +1,0 @@
-{"version":3,"names":[],"sources":["/home/omar/Desktop/Protofolio_without_redis/src/auth/JwtPayload.ts"],"sourcesContent":["export interface JwtPayload {\n  sub: string;\n  username: string;\n  role: string;\n  iat?: number;\n  exp?: number;\n}\n"],"mappings":"","ignoreList":[]}
