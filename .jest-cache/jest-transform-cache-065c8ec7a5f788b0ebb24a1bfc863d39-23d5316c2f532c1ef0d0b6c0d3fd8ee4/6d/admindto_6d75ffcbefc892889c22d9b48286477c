@@ -1,0 +1,203 @@
+b7883c0450db7803469c398c98053b79
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GetLogDto = exports.FindIdDto = exports.CreateProductDto = exports.UpdateProductDto = exports.UpdateUserDto = exports.FindLimitDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
+const User_entity_1 = require("../../entities/User.entity");
+const Product_entity_1 = require("../../entities/Product.entity");
+const class_transformer_1 = require("class-transformer");
+// ================= FIND LIMIT =================
+class FindLimitDto {
+    take;
+    skip;
+}
+exports.FindLimitDto = FindLimitDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 10,
+        description: "Number of items to take (limit)",
+    }),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], FindLimitDto.prototype, "take", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 0,
+        description: "Number of items to skip (offset)",
+    }),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], FindLimitDto.prototype, "skip", void 0);
+// ================= UPDATE USER =================
+class UpdateUserDto {
+    id;
+    updated_User;
+}
+exports.UpdateUserDto = UpdateUserDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: "2d9f9c3e-b8c4-4f56-8a2f-23d84b15b9f5",
+        description: "UUID of the user to update",
+    }),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateUserDto.prototype, "id", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        description: "Partial user data to update",
+        type: () => User_entity_1.User,
+        required: false,
+    }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", typeof (_a = typeof User_entity_1.User !== "undefined" && User_entity_1.User) === "function" ? _a : Object)
+], UpdateUserDto.prototype, "updated_User", void 0);
+// ================= UPDATE PRODUCT =================
+class UpdateProductDto {
+    id;
+    updatedProduct;
+}
+exports.UpdateProductDto = UpdateProductDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: "9e8a1b64-3f24-4c54-ae13-cc1fd6d8a6f0",
+        description: "UUID of the product to update",
+    }),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateProductDto.prototype, "id", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        description: "Partial product data to update",
+        type: () => Product_entity_1.Product,
+        required: false,
+    }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", typeof (_b = typeof Product_entity_1.Product !== "undefined" && Product_entity_1.Product) === "function" ? _b : Object)
+], UpdateProductDto.prototype, "updatedProduct", void 0);
+// ================= CREATE PRODUCT =================
+class CreateProductDto {
+    name;
+    description;
+    price;
+    stock;
+    more_description;
+    categoryId;
+    images;
+}
+exports.CreateProductDto = CreateProductDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: "Wireless Mouse",
+        description: "Name of the product",
+    }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateProductDto.prototype, "name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: "High-precision wireless mouse with ergonomic design",
+        description: "Product description",
+    }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateProductDto.prototype, "description", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 49.99,
+        description: "Product price",
+    }),
+    (0, class_validator_1.IsInt)(),
+    __metadata("design:type", Number)
+], CreateProductDto.prototype, "price", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 100,
+        description: "Available stock quantity",
+    }),
+    (0, class_validator_1.IsInt)(),
+    __metadata("design:type", Number)
+], CreateProductDto.prototype, "stock", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: "Extra info about materials or specifications",
+        description: "Additional product details",
+        required: false,
+    }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateProductDto.prototype, "more_description", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: "electronics",
+        description: "Category ID or name (optional)",
+        required: false,
+    }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateProductDto.prototype, "categoryId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: ["image1.jpg", "image2.jpg"],
+        description: "Array of product image URLs",
+        required: false,
+    }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Array)
+], CreateProductDto.prototype, "images", void 0);
+// ================= FIND BY ID =================
+class FindIdDto {
+    id;
+}
+exports.FindIdDto = FindIdDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: "2f8d4a5b-7b41-4c5e-b70b-6d7ffeb7f437",
+        description: "UUID of the entity to find",
+    }),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], FindIdDto.prototype, "id", void 0);
+// ================= GET LOG =================
+class GetLogDto {
+    take;
+    skip;
+}
+exports.GetLogDto = GetLogDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 20,
+        description: "Number of log entries to take",
+    }),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], GetLogDto.prototype, "take", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 0,
+        description: "Number of log entries to skip",
+    }),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], GetLogDto.prototype, "skip", void 0);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL2hvbWUvb21hci9EZXNrdG9wL1Byb3RvZm9saW9fd2l0aG91dF9yZWRpcy9zcmMvYWRtaW4vZHRvL2FkbWluLmR0by50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7O0FBQUEsNkNBQThDO0FBQzlDLHFEQU95QjtBQUN6Qiw0REFBa0Q7QUFDbEQsa0VBQXdEO0FBQ3hELHlEQUF5QztBQUV6QyxpREFBaUQ7QUFDakQsTUFBYSxZQUFZO0lBUXZCLElBQUksQ0FBUztJQVNiLElBQUksQ0FBUztDQUNkO0FBbEJELG9DQWtCQztBQVZDO0lBUEMsSUFBQSxxQkFBVyxFQUFDO1FBQ1gsT0FBTyxFQUFFLEVBQUU7UUFDWCxXQUFXLEVBQUUsaUNBQWlDO0tBQy9DLENBQUM7SUFDRCxJQUFBLHdCQUFJLEVBQUMsR0FBRyxFQUFFLENBQUMsTUFBTSxDQUFDO0lBQ2xCLElBQUEsdUJBQUssR0FBRTtJQUNQLElBQUEscUJBQUcsRUFBQyxDQUFDLENBQUM7OzBDQUNNO0FBU2I7SUFQQyxJQUFBLHFCQUFXLEVBQUM7UUFDWCxPQUFPLEVBQUUsQ0FBQztRQUNWLFdBQVcsRUFBRSxrQ0FBa0M7S0FDaEQsQ0FBQztJQUNELElBQUEsd0JBQUksRUFBQyxHQUFHLEVBQUUsQ0FBQyxNQUFNLENBQUM7SUFDbEIsSUFBQSx1QkFBSyxHQUFFO0lBQ1AsSUFBQSxxQkFBRyxFQUFDLENBQUMsQ0FBQzs7MENBQ007QUFHZixrREFBa0Q7QUFDbEQsTUFBYSxhQUFhO0lBTXhCLEVBQUUsQ0FBUztJQVFYLFlBQVksQ0FBTztDQUNwQjtBQWZELHNDQWVDO0FBVEM7SUFMQyxJQUFBLHFCQUFXLEVBQUM7UUFDWCxPQUFPLEVBQUUsc0NBQXNDO1FBQy9DLFdBQVcsRUFBRSw0QkFBNEI7S0FDMUMsQ0FBQztJQUNELElBQUEsd0JBQU0sR0FBRTs7eUNBQ0U7QUFRWDtJQU5DLElBQUEscUJBQVcsRUFBQztRQUNYLFdBQVcsRUFBRSw2QkFBNkI7UUFDMUMsSUFBSSxFQUFFLEdBQUcsRUFBRSxDQUFDLGtCQUFJO1FBQ2hCLFFBQVEs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QUFDO0lBQ0QsSUFBQSx3QkFBSSxFQUFDLEdBQUcsRUFBRSxDQUFDLE1BQU0sQ0FBQztJQUNsQixJQUFBLHVCQUFLLEdBQUU7SUFDUCxJQUFBLHFCQUFHLEVBQUMsQ0FBQyxDQUFDOzt1Q0FDTTtBQVNiO0lBUEMsSUFBQSxxQkFBVyxFQUFDO1FBQ1gsT0FBTyxFQUFFLENBQUM7UUFDVixXQUFXLEVBQUUsK0JBQStCO0tBQzdDLENBQUM7SUFDRCxJQUFBLHdCQUFJLEVBQUMsR0FBRyxFQUFFLENBQUMsTUFBTSxDQUFDO0lBQ2xCLElBQUEsdUJBQUssR0FBRTtJQUNQLElBQUEscUJBQUcsRUFBQyxDQUFDLENBQUM7O3VDQUNNIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIi9ob21lL29tYXIvRGVza3RvcC9Qcm90b2ZvbGlvX3dpdGhvdXRfcmVkaXMvc3JjL2FkbWluL2R0by9hZG1pbi5kdG8udHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQXBpUHJvcGVydHkgfSBmcm9tIFwiQG5lc3Rqcy9zd2FnZ2VyXCI7XG5pbXBvcnQge1xuICBJc0ludCxcbiAgTWluLFxuICBJc09wdGlvbmFsLFxuICBJc1N0cmluZyxcbiAgSXNVVUlELFxuICBJc05vdEVtcHR5LFxufSBmcm9tIFwiY2xhc3MtdmFsaWRhdG9yXCI7XG5pbXBvcnQgeyBVc2VyIH0gZnJvbSBcIi4uLy4uL2VudGl0aWVzL1VzZXIuZW50aXR5XCI7XG5pbXBvcnQgeyBQcm9kdWN0IH0gZnJvbSBcIi4uLy4uL2VudGl0aWVzL1Byb2R1Y3QuZW50aXR5XCI7XG5pbXBvcnQgeyBUeXBlIH0gZnJvbSBcImNsYXNzLXRyYW5zZm9ybWVyXCI7XG5cbi8vID09PT09PT09PT09PT09PT09IEZJTkQgTElNSVQgPT09PT09PT09PT09PT09PT1cbmV4cG9ydCBjbGFzcyBGaW5kTGltaXREdG8ge1xuICBAQXBpUHJvcGVydHkoe1xuICAgIGV4YW1wbGU6IDEwLFxuICAgIGRlc2NyaXB0aW9uOiBcIk51bWJlciBvZiBpdGVtcyB0byB0YWtlIChsaW1pdClcIixcbiAgfSlcbiAgQFR5cGUoKCkgPT4gTnVtYmVyKVxuICBASXNJbnQoKVxuICBATWluKDApXG4gIHRha2U6IG51bWJlcjtcblxuICBAQXBpUHJvcGVydHkoe1xuICAgIGV4YW1wbGU6IDAsXG4gICAgZGVzY3JpcHRpb246IFwiTnVtYmVyIG9mIGl0ZW1zIHRvIHNraXAgKG9mZnNldClcIixcbiAgfSlcbiAgQFR5cGUoKCkgPT4gTnVtYmVyKVxuICBASXNJbnQoKVxuICBATWluKDApXG4gIHNraXA6IG51bWJlcjtcbn1cblxuLy8gPT09PT09PT09PT09PT09PT0gVVBEQVRFIFVTRVIgPT09PT09PT09PT09PT09PT1cbmV4cG9ydCBjbGFzcyBVcGRhdGVVc2VyRHRvIHtcbiAgQEFwaVByb3BlcnR5KHtcbiAgICBleGFtcGxlOiBcIjJkOWY5YzNlLWI4YzQtNGY1Ni04YTJmLTIzZDg0YjE1YjlmNVwiLFxuICAgIGRlc2NyaXB0aW9uOiBcIlVVSUQgb2YgdGhlIHVzZXIgdG8gdXBkYXRlXCIsXG4gIH0pXG4gIEBJc1VVSUQoKVxuICBpZDogc3RyaW5nO1xuXG4gIEBBcGlQcm9wZXJ0eSh7XG4gICAgZGVzY3JpcHRpb246IFwiUGFydGlhbCB1c2VyIGRhdGEgdG8gdXBkYXRlXCIsXG4gICAgdHlwZTogKCkgPT4gVXNlcixcbiAgICByZXF1aXJlZDogZmFsc2UsXG4gIH0pXG4gIEBJc09wdGlvbmFsKClcbiAgdXBkYXRlZF9Vc2VyOiBVc2VyO1xufVxuXG4vLyA9PT09PT09PT09PT09PT09PSBVUERBVEUgUFJPRFVDVCA9PT09PT09PT09PT09PT09PVxuZXhwb3J0IGNsYXNzIFVwZGF0ZVByb2R1Y3REdG8ge1xuICBAQXBpUHJvcGVydHkoe1xuICAgIGV4YW1wbGU6IFwiOWU4YTFiNjQtM2YyNC00YzU0LWFlMTMtY2MxZmQ2ZDhhNmYwXCIsXG4gICAgZGVzY3JpcHRpb246IFwiVVVJRCBvZiB0aGUgcHJvZHVjdCB0byB1cGRhdGVcIixcbiAgfSlcbiAgQElzVVVJRCgpXG4gIGlkOiBzdHJpbmc7XG5cbiAgQEFwaVByb3BlcnR5KHtcbiAgICBkZXNjcmlwdGlvbjogXCJQYXJ0aWFsIHByb2R1Y3QgZGF0YSB0byB1cGRhdGVcIixcbiAgICB0eXBlOiAoKSA9PiBQcm9kdWN0LFxuICAgIHJlcXVpcmVkOiBmYWxzZSxcbiAgfSlcbiAgQElzT3B0aW9uYWwoKVxuICB1cGRhdGVkUHJvZHVjdDogUHJvZHVjdDtcbn1cblxuLy8gPT09PT09PT09PT09PT09PT0gQ1JFQVRFIFBST0RVQ1QgPT09PT09PT09PT09PT09PT1cbmV4cG9ydCBjbGFzcyBDcmVhdGVQcm9kdWN0RHRvIHtcbiAgQEFwaVByb3BlcnR5KHtcbiAgICBleGFtcGxlOiBcIldpcmVsZXNzIE1vdXNlXCIsXG4gICAgZGVzY3JpcHRpb246IFwiTmFtZSBvZiB0aGUgcHJvZHVjdFwiLFxuICB9KVxuICBASXNTdHJpbmcoKVxuICBASXNOb3RFbXB0eSgpXG4gIG5hbWU6IHN0cmluZztcblxuICBAQXBpUHJvcGVydHkoe1xuICAgIGV4YW1wbGU6IFwiSGlnaC1wcmVjaXNpb24gd2lyZWxlc3MgbW91c2Ugd2l0aCBlcmdvbm9taWMgZGVzaWduXCIsXG4gICAgZGVzY3JpcHRpb246IFwiUHJvZHVjdCBkZXNjcmlwdGlvblwiLFxuICB9KVxuICBASXNTdHJpbmcoKVxuICBASXNOb3RFbXB0eSgpXG4gIGRlc2NyaXB0aW9uOiBzdHJpbmc7XG5cbiAgQEFwaVByb3BlcnR5KHtcbiAgICBleGFtcGxlOiA0OS45OSxcbiAgICBkZXNjcmlwdGlvbjogXCJQcm9kdWN0IHByaWNlXCIsXG4gIH0pXG4gIEBJc0ludCgpXG4gIHByaWNlOiBudW1iZXI7XG5cbiAgQEFwaVByb3BlcnR5KHtcbiAgICBleGFtcGxlOiAxMDAsXG4gICAgZGVzY3JpcHRpb246IFwiQXZhaWxhYmxlIHN0b2NrIHF1YW50aXR5XCIsXG4gIH0pXG4gIEBJc0ludCgpXG4gIHN0b2NrOiBudW1iZXI7XG5cbiAgQEFwaVByb3BlcnR5KHtcbiAgICBleGFtcGxlOiBcIkV4dHJhIGluZm8gYWJvdXQgbWF0ZXJpYWxzIG9yIHNwZWNpZmljYXRpb25zXCIsXG4gICAgZGVzY3JpcHRpb246IFwiQWRkaXRpb25hbCBwcm9kdWN0IGRldGFpbHNcIixcbiAgICByZXF1aXJlZDogZmFsc2UsXG4gIH0pXG4gIEBJc09wdGlvbmFsKClcbiAgbW9yZV9kZXNjcmlwdGlvbj86IHN0cmluZztcblxuICBAQXBpUHJvcGVydHkoe1xuICAgIGV4YW1wbGU6IFwiZWxlY3Ryb25pY3NcIixcbiAgICBkZXNjcmlwdGlvbjogXCJDYXRlZ29yeSBJRCBvciBuYW1lIChvcHRpb25hbClcIixcbiAgICByZXF1aXJlZDogZmFsc2UsXG4gIH0pXG4gIEBJc09wdGlvbmFsKClcbiAgY2F0ZWdvcnlJZD86IHN0cmluZztcblxuICBAQXBpUHJvcGVydHkoe1xuICAgIGV4YW1wbGU6IFtcImltYWdlMS5qcGdcIiwgXCJpbWFnZTIuanBnXCJdLFxuICAgIGRlc2NyaXB0aW9uOiBcIkFycmF5IG9mIHByb2R1Y3QgaW1hZ2UgVVJMc1wiLFxuICAgIHJlcXVpcmVkOiBmYWxzZSxcbiAgfSlcbiAgQElzT3B0aW9uYWwoKVxuICBpbWFnZXM/OiBzdHJpbmdbXTtcbn1cblxuLy8gPT09PT09PT09PT09PT09PT0gRklORCBCWSBJRCA9PT09PT09PT09PT09PT09PVxuZXhwb3J0IGNsYXNzIEZpbmRJZER0byB7XG4gIEBBcGlQcm9wZXJ0eSh7XG4gICAgZXhhbXBsZTogXCIyZjhkNGE1Yi03YjQxLTRjNWUtYjcwYi02ZDdmZmViN2Y0MzdcIixcbiAgICBkZXNjcmlwdGlvbjogXCJVVUlEIG9mIHRoZSBlbnRpdHkgdG8gZmluZFwiLFxuICB9KVxuICBASXNVVUlEKClcbiAgaWQ6IHN0cmluZztcbn1cblxuLy8gPT09PT09PT09PT09PT09PT0gR0VUIExPRyA9PT09PT09PT09PT09PT09PVxuZXhwb3J0IGNsYXNzIEdldExvZ0R0byB7XG4gIEBBcGlQcm9wZXJ0eSh7XG4gICAgZXhhbXBsZTogMjAsXG4gICAgZGVzY3JpcHRpb246IFwiTnVtYmVyIG9mIGxvZyBlbnRyaWVzIHRvIHRha2VcIixcbiAgfSlcbiAgQFR5cGUoKCkgPT4gTnVtYmVyKVxuICBASXNJbnQoKVxuICBATWluKDApXG4gIHRha2U6IG51bWJlcjtcblxuICBAQXBpUHJvcGVydHkoe1xuICAgIGV4YW1wbGU6IDAsXG4gICAgZGVzY3JpcHRpb246IFwiTnVtYmVyIG9mIGxvZyBlbnRyaWVzIHRvIHNraXBcIixcbiAgfSlcbiAgQFR5cGUoKCkgPT4gTnVtYmVyKVxuICBASXNJbnQoKVxuICBATWluKDApXG4gIHNraXA6IG51bWJlcjtcbn1cbiJdLCJ2ZXJzaW9uIjozfQ==

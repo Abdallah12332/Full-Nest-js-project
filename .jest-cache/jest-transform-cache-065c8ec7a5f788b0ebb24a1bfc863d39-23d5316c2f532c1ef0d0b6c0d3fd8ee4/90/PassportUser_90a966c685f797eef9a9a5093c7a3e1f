@@ -1,0 +1,60 @@
+0137125a14e177bb840c6ef2c0a10c1d
+"use strict";
+
+/* istanbul ignore next */
+function cov_2dd6cb3qi6() {
+  var path = "/home/omar/Desktop/Protofolio_without_redis/src/auth/PassportUser.ts";
+  var hash = "218d3ca8ec1845474387a94b5e62d790d65a7201";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/home/omar/Desktop/Protofolio_without_redis/src/auth/PassportUser.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 2,
+          column: 0
+        },
+        end: {
+          line: 2,
+          column: 62
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      "0": 0
+    },
+    f: {},
+    b: {},
+    inputSourceMap: {
+      file: "/home/omar/Desktop/Protofolio_without_redis/src/auth/PassportUser.ts",
+      mappings: "",
+      names: [],
+      sources: ["/home/omar/Desktop/Protofolio_without_redis/src/auth/PassportUser.ts"],
+      sourcesContent: ["export interface PassportUser {\n  id: string;\n  displayName: string;\n  name?: {\n    familyName?: string;\n    givenName?: string;\n  };\n  emails?: Array<{\n    value: string;\n    verified?: boolean;\n    type?: string;\n  }>;\n  photos?: Array<{\n    value: string;\n  }>;\n  provider: \"google\";\n  _raw?: string;\n  _json?: {\n    sub: string;\n    name: string;\n    given_name: string;\n    family_name: string;\n    picture: string;\n    email: string;\n    email_verified: boolean;\n    locale?: string;\n  };\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "218d3ca8ec1845474387a94b5e62d790d65a7201"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_2dd6cb3qi6 = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_2dd6cb3qi6();
+cov_2dd6cb3qi6().s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiL2hvbWUvb21hci9EZXNrdG9wL1Byb3RvZm9saW9fd2l0aG91dF9yZWRpcy9zcmMvYXV0aC9QYXNzcG9ydFVzZXIudHMiXSwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGludGVyZmFjZSBQYXNzcG9ydFVzZXIge1xuICBpZDogc3RyaW5nO1xuICBkaXNwbGF5TmFtZTogc3RyaW5nO1xuICBuYW1lPzoge1xuICAgIGZhbWlseU5hbWU/OiBzdHJpbmc7XG4gICAgZ2l2ZW5OYW1lPzogc3RyaW5nO1xuICB9O1xuICBlbWFpbHM/OiBBcnJheTx7XG4gICAgdmFsdWU6IHN0cmluZztcbiAgICB2ZXJpZmllZD86IGJvb2xlYW47XG4gICAgdHlwZT86IHN0cmluZztcbiAgfT47XG4gIHBob3Rvcz86IEFycmF5PHtcbiAgICB2YWx1ZTogc3RyaW5nO1xuICB9PjtcbiAgcHJvdmlkZXI6IFwiZ29vZ2xlXCI7XG4gIF9yYXc/OiBzdHJpbmc7XG4gIF9qc29uPzoge1xuICAgIHN1Yjogc3RyaW5nO1xuICAgIG5hbWU6IHN0cmluZztcbiAgICBnaXZlbl9uYW1lOiBzdHJpbmc7XG4gICAgZmFtaWx5X25hbWU6IHN0cmluZztcbiAgICBwaWN0dXJlOiBzdHJpbmc7XG4gICAgZW1haWw6IHN0cmluZztcbiAgICBlbWFpbF92ZXJpZmllZDogYm9vbGVhbjtcbiAgICBsb2NhbGU/OiBzdHJpbmc7XG4gIH07XG59XG4iXSwibWFwcGluZ3MiOiIiLCJpZ25vcmVMaXN0IjpbXX0=

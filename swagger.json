@@ -1,0 +1,1374 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/admin/findLimit": {
+      "get": {
+        "operationId": "AdminController_FindLimitUser",
+        "parameters": [
+          {
+            "name": "take",
+            "required": true,
+            "in": "query",
+            "description": "Number of users to take",
+            "schema": {
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "skip",
+            "required": true,
+            "in": "query",
+            "description": "Number of users to skip",
+            "schema": {
+              "example": 0,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Retrieve a paginated list of users",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/findone/{id}": {
+      "get": {
+        "operationId": "AdminController_FindUser",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "example": "9d8c6f2a-ec71-4f24-b5b7-9a21455c2133",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Retrieve a user by ID",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/Createone": {
+      "post": {
+        "operationId": "AdminController_CreateUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "User data object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid user data"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Create a new user",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/Updateone": {
+      "put": {
+        "operationId": "AdminController_UpdateUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "Updated user data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated successfully"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Update an existing user",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/Deleteone/{id}": {
+      "delete": {
+        "operationId": "AdminController_DeleteUser",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "example": "3b4d4a1e-bc25-4c8d-8f29-11e40a7d8c33",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Delete a user by ID",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/limitProducts": {
+      "get": {
+        "operationId": "AdminController_FindLimitProducts",
+        "parameters": [
+          {
+            "name": "take",
+            "required": true,
+            "in": "query",
+            "description": "Number of products to take",
+            "schema": {
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "skip",
+            "required": true,
+            "in": "query",
+            "description": "Number of products to skip",
+            "schema": {
+              "example": 0,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Products retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Retrieve a paginated list of products",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/find_one_product/{id}": {
+      "get": {
+        "operationId": "AdminController_FindProduct",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "example": "c5a3b3f7-987d-47bb-b5dc-81c2d57d1234",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Retrieve a product by ID",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/createProduct": {
+      "post": {
+        "operationId": "AdminController_CreateProduct",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "Product data object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProductDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid product data"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Create a new product",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/update_Product": {
+      "put": {
+        "operationId": "AdminController_UpdateProduct",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "Updated product data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProductDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product updated successfully"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Update an existing product",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/delete_Product/{id}": {
+      "delete": {
+        "operationId": "AdminController_DeleteProduct",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "example": "8d3b7a4f-6a2e-4a1a-9c8a-17c7e8a5f233",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted successfully"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Delete a product by ID",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/find_cart": {
+      "get": {
+        "operationId": "AdminController_Find_Cart",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "query",
+            "description": "UUID of the entity to find",
+            "schema": {
+              "example": "b8d5f3e4-8c7d-47a1-b7e5-5a2bca91e7a9",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cart"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cart not found"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Retrieve a cart by ID",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/find_cartItem": {
+      "get": {
+        "operationId": "AdminController_Find_CartItem",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "query",
+            "description": "UUID of the entity to find",
+            "schema": {
+              "example": "2a3f7b1c-4c9d-4b3e-8a2b-11d3f9b8e6f0",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart item retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartItem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cart item not found"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Retrieve a cart item by ID",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/getLog": {
+      "get": {
+        "operationId": "AdminController_getlog",
+        "parameters": [
+          {
+            "name": "take",
+            "required": true,
+            "in": "query",
+            "description": "Number of logs to take",
+            "schema": {
+              "example": 20,
+              "type": "number"
+            }
+          },
+          {
+            "name": "skip",
+            "required": true,
+            "in": "query",
+            "description": "Number of logs to skip",
+            "schema": {
+              "example": 0,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logs retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Retrieve application logs with pagination",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/auth/half-register": {
+      "post": {
+        "operationId": "AuthController_register_half",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterHalfDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/full_register": {
+      "post": {
+        "operationId": "AuthController_register_full",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterFullDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/complete_register": {
+      "post": {
+        "operationId": "AuthController_register_complete",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterCompleteDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/log_out": {
+      "post": {
+        "operationId": "AuthController_log_out",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogOutDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/password-reset-request": {
+      "post": {
+        "operationId": "AuthController_requestPasswordReset",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordResetRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/password-reset-confirm": {
+      "post": {
+        "operationId": "AuthController_confirmPasswordReset",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordResetConfirmDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/callback/google": {
+      "get": {
+        "operationId": "AuthController_googleCallback",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/update_token": {
+      "post": {
+        "operationId": "AuthController_update_token",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/csrf": {
+      "post": {
+        "operationId": "AuthController_getCsrfToken",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/user/Add_Review": {
+      "post": {
+        "operationId": "UserController_Add_Review",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddReviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/Edit_Review": {
+      "post": {
+        "operationId": "UserController_Edit_Review",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditReviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/Remove_Review": {
+      "post": {
+        "operationId": "UserController_Remove_Review",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveReviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/Add_Cart_Item": {
+      "post": {
+        "operationId": "UserController_Add_Cart_Item",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCartItemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/Remove_Cart_Item": {
+      "post": {
+        "operationId": "UserController_Remove_Cart_Item",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveCartItemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/increase_Quantity": {
+      "post": {
+        "operationId": "UserController_increase_Quantity",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncreaseQuantityDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/decrease_Quantity": {
+      "post": {
+        "operationId": "UserController_decrease_Quantity",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecreaseQuantityDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/products_search": {
+      "get": {
+        "operationId": "UserController_SearchProducts",
+        "parameters": [
+          {
+            "name": "searchTerm",
+            "required": false,
+            "in": "query",
+            "description": "Search keyword for product name or description",
+            "schema": {
+              "example": "laptop",
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number for pagination",
+            "schema": {
+              "example": 1,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/ProductCategory": {
+      "get": {
+        "operationId": "UserController_FindProductsByCategory",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "required": true,
+            "in": "query",
+            "description": "Category ID or name to filter products",
+            "schema": {
+              "example": "electronics",
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number for pagination",
+            "schema": {
+              "example": 2,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Portfolio API",
+    "description": "API documentation",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateUserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "2d9f9c3e-b8c4-4f56-8a2f-23d84b15b9f5",
+            "description": "UUID of the user to update"
+          },
+          "updated_User": {
+            "description": "Partial user data to update",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "Product": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateProductDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Wireless Mouse",
+            "description": "Name of the product"
+          },
+          "description": {
+            "type": "string",
+            "example": "High-precision wireless mouse with ergonomic design",
+            "description": "Product description"
+          },
+          "price": {
+            "type": "number",
+            "example": 49.99,
+            "description": "Product price"
+          },
+          "stock": {
+            "type": "number",
+            "example": 100,
+            "description": "Available stock quantity"
+          },
+          "more_description": {
+            "type": "string",
+            "example": "Extra info about materials or specifications",
+            "description": "Additional product details"
+          },
+          "categoryId": {
+            "type": "string",
+            "example": "electronics",
+            "description": "Category ID or name (optional)"
+          },
+          "images": {
+            "example": [
+              "image1.jpg",
+              "image2.jpg"
+            ],
+            "description": "Array of product image URLs",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "price",
+          "stock"
+        ]
+      },
+      "UpdateProductDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "9e8a1b64-3f24-4c54-ae13-cc1fd6d8a6f0",
+            "description": "UUID of the product to update"
+          },
+          "updatedProduct": {
+            "description": "Partial product data to update",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Product"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "Cart": {
+        "type": "object",
+        "properties": {}
+      },
+      "CartItem": {
+        "type": "object",
+        "properties": {}
+      },
+      "RegisterHalfDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "test@example.com",
+            "description": "User email to start partial registration"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "RegisterFullDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "test@example.com",
+            "description": "User email used for full registration step"
+          },
+          "code": {
+            "type": "string",
+            "example": "123456",
+            "description": "Verification code sent to email"
+          }
+        },
+        "required": [
+          "email",
+          "code"
+        ]
+      },
+      "RegisterCompleteDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "test@example.com",
+            "description": "User email for final registration step"
+          },
+          "password": {
+            "type": "string",
+            "example": "StrongPass123!",
+            "description": "Password for the new account"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@example.com",
+            "description": "User email used for login"
+          },
+          "password": {
+            "type": "string",
+            "example": "StrongPass123!",
+            "description": "User password used for login"
+          }
+        }
+      },
+      "LogOutDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@example.com",
+            "description": "Email of the user to log out"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "PasswordResetRequestDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@example.com",
+            "description": "Email used to send password reset token"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "PasswordResetConfirmDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@example.com",
+            "description": "Email associated with the reset token"
+          },
+          "token": {
+            "type": "string",
+            "example": "abcdef123456",
+            "description": "Password reset token sent to user email"
+          },
+          "newPassword": {
+            "type": "string",
+            "example": "NewStrongPassword1!",
+            "description": "New password to set for the account"
+          }
+        },
+        "required": [
+          "email",
+          "token",
+          "newPassword"
+        ]
+      },
+      "AddReviewDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@example.com",
+            "description": "Email of the user submitting the review"
+          },
+          "comment": {
+            "type": "string",
+            "example": "Great product, highly recommended!",
+            "description": "User comment on the product"
+          },
+          "productId": {
+            "type": "string",
+            "example": "8f2e9f13-7d34-4c5a-95b1-5e5b3b5c1c9a",
+            "description": "UUID of the product being reviewed"
+          },
+          "rating": {
+            "type": "number",
+            "example": 4,
+            "description": "Rating between 1 and 5"
+          }
+        },
+        "required": [
+          "email",
+          "comment",
+          "productId",
+          "rating"
+        ]
+      },
+      "EditReviewDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@example.com",
+            "description": "Email of the user editing the review"
+          },
+          "reviewId": {
+            "type": "string",
+            "example": "a14b5c3e-8e9f-4c2d-923b-34b7f26a1b2c",
+            "description": "UUID of the review to edit"
+          },
+          "comment": {
+            "type": "string",
+            "example": "Updated comment about the product",
+            "description": "Updated review text"
+          },
+          "rating": {
+            "type": "number",
+            "example": 5,
+            "description": "Updated rating between 1 and 5"
+          }
+        },
+        "required": [
+          "email",
+          "reviewId"
+        ]
+      },
+      "RemoveReviewDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@example.com",
+            "description": "Email of the user removing the review"
+          },
+          "reviewId": {
+            "type": "string",
+            "example": "a14b5c3e-8e9f-4c2d-923b-34b7f26a1b2c",
+            "description": "UUID of the review to remove"
+          }
+        },
+        "required": [
+          "email",
+          "reviewId"
+        ]
+      },
+      "AddCartItemDto": {
+        "type": "object",
+        "properties": {
+          "cartId": {
+            "type": "string",
+            "example": "7a2b8c4f-3c5d-4a6b-9e5f-12345abcde67",
+            "description": "UUID of the user's cart"
+          },
+          "productId": {
+            "type": "string",
+            "example": "8f2e9f13-7d34-4c5a-95b1-5e5b3b5c1c9a",
+            "description": "UUID of the product to add to the cart"
+          }
+        },
+        "required": [
+          "cartId",
+          "productId"
+        ]
+      },
+      "RemoveCartItemDto": {
+        "type": "object",
+        "properties": {
+          "cartId": {
+            "type": "string",
+            "example": "7a2b8c4f-3c5d-4a6b-9e5f-12345abcde67",
+            "description": "UUID of the user's cart"
+          },
+          "productId": {
+            "type": "string",
+            "example": "8f2e9f13-7d34-4c5a-95b1-5e5b3b5c1c9a",
+            "description": "UUID of the product to remove from the cart"
+          }
+        },
+        "required": [
+          "cartId",
+          "productId"
+        ]
+      },
+      "IncreaseQuantityDto": {
+        "type": "object",
+        "properties": {
+          "cartItemId": {
+            "type": "string",
+            "example": "3a5b9c8d-2e4f-4b6c-9a8f-34567f9e0b1a",
+            "description": "UUID of the cart item to increase quantity"
+          }
+        },
+        "required": [
+          "cartItemId"
+        ]
+      },
+      "DecreaseQuantityDto": {
+        "type": "object",
+        "properties": {
+          "cartItemId": {
+            "type": "string",
+            "example": "3a5b9c8d-2e4f-4b6c-9a8f-34567f9e0b1a",
+            "description": "UUID of the cart item to decrease quantity"
+          }
+        },
+        "required": [
+          "cartItemId"
+        ]
+      }
+    }
+  }
+}

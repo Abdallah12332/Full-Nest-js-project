@@ -1,0 +1,75 @@
+78376ab2412743291b7f42d64fdf6426
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a, _b, _c, _d;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FailedAttempt = void 0;
+const typeorm_1 = require("typeorm");
+let FailedAttempt = class FailedAttempt {
+    id;
+    email;
+    ipAddress;
+    type; // Type of attempt
+    attempts;
+    lastAttempt;
+    lockedUntil;
+    createdAt;
+    updatedAt;
+};
+exports.FailedAttempt = FailedAttempt;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], FailedAttempt.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], FailedAttempt.prototype, "email", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], FailedAttempt.prototype, "ipAddress", void 0);
+__decorate([
+    (0, typeorm_1.Column)({
+        type: "enum",
+        enum: ["login", "verification"],
+    }),
+    __metadata("design:type", String)
+], FailedAttempt.prototype, "type", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: 1 }),
+    __metadata("design:type", Number)
+], FailedAttempt.prototype, "attempts", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+], FailedAttempt.prototype, "lastAttempt", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
+], FailedAttempt.prototype, "lockedUntil", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", typeof (_c = typeof Date !== "undefined" && Date) === "function" ? _c : Object)
+], FailedAttempt.prototype, "createdAt", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)(),
+    __metadata("design:type", typeof (_d = typeof Date !== "undefined" && Date) === "function" ? _d : Object)
+], FailedAttempt.prototype, "updatedAt", void 0);
+exports.FailedAttempt = FailedAttempt = __decorate([
+    (0, typeorm_1.Entity)(),
+    (0, typeorm_1.Index)(["email", "ipAddress", "type"], { unique: true }) // Composite unique constraint
+    ,
+    (0, typeorm_1.Index)(["email", "type"]) // Index for email-based queries
+    ,
+    (0, typeorm_1.Index)(["ipAddress", "type"]) // Index for IP-based queries
+], FailedAttempt);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL2hvbWUvb21hci9EZXNrdG9wL1Byb3RvZm9saW9fd2l0aG91dF9yZWRpcy9zcmMvZW50aXRpZXMvRmFpbGVkQXR0ZW1wdC5lbnRpdHkudHMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7OztBQUFBLHFDQU9pQjtBQU1WLElBQU0sYUFBYSxHQUFuQixNQUFNLGFBQWE7SUFFeEIsRUFBRSxDQUFTO0lBR1gsS0FBSyxDQUFTO0lBR2QsU0FBUyxDQUFTO0lBTWxCLElBQUksQ0FBMkIsQ0FBQyxrQkFBa0I7SUFHbEQsUUFBUSxDQUFTO0lBR2pCLFdBQVcsQ0FBTztJQUdsQixXQUFXLENBQU87SUFHbEIsU0FBUyxDQUFPO0lBR2hCLFNBQVMsQ0FBTztDQUNqQixDQUFBO0FBOUJZLHNDQUFhO0FBRXhCO0lBREMsSUFBQSxnQ0FBc0IsR0FBRTs7eUNBQ2Q7QUFHWDtJQURDLElBQUEsZ0JBQU0sR0FBRTs7NENBQ0s7QUFHZDtJQURDLElBQUEsZ0JBQU0sR0FBRTs7Z0RBQ1M7QUFNbEI7SUFKQyxJQUFBLGdCQUFNLEVBQUM7UUFDTixJQUFJLEVBQUUsTUFBTTtRQUNaLElBQUksRUFBRSxDQUFDLE9BQU8sRUFBRSxjQUFjLENBQUM7S0FDaEMsQ0FBQzs7MkNBQzZCO0FBRy9CO0lBREMsSUFBQSxnQkFBTSxFQUFDLEVBQUUsT0FBTyxFQUFFLENBQUMsRUFBRSxDQUFDOzsrQ0FDTjtBQUdqQjtJQURDLElBQUEsZ0JBQU0sRUFBQyxFQUFFLFFBQVEsRUFBRSxJQUFJLEVBQUUsQ0FBQztrREFDZCxJQUFJLG9CQUFKLElBQUk7a0RBQUM7QUFHbEI7SUFEQyxJQUFBLGdCQUFNLEVBQUMsRUFBRSxRQUFRLEVBQUUsSUFBSSxFQUFFLENBQUM7a0RBQ2QsSUFBSSxvQkFBSixJQUFJO2tEQUFDO0FBR2xCO0lBREMsSUFBQSwwQkFBZ0IsR0FBRTtrREFDUixJQUFJLG9CQUFKLElBQUk7Z0RBQUM7QUFHaEI7SUFEQyxJQUFBLDBCQUFnQixHQUFFO2tEQUNSLElBQUksb0JBQUosSUFBSTtnREFBQzt3QkE3QkwsYUFBYTtJQUp6QixJQUFBLGdCQUFNLEdBQUU7SUFDUixJQUFBLGVBQUssRUFBQyxDQUFDLE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSxDQUFDLEVBQUUsRUFBRSxNQUFNLEVBQUUsSUFBSSxFQUFFLENBQUMsQ0FBQyw4QkFBOEI7O0lBQ3RGLElBQUEsZUFBSyxFQUFDLENBQUMsT0FBTyxFQUFFLE1BQU0sQ0FBQyxDQUFDLENBQUMsZ0NBQWdDOztJQUN6RCxJQUFBLGVBQUssRUFBQyxDQUFDLFdBQVcsRUFBRSxNQUFNLENBQUMsQ0FBQyxDQUFDLDZCQUE2QjtHQUM5QyxhQUFhLENBOEJ6QiIsIm5hbWVzIjpbXSwic291cmNlcyI6WyIvaG9tZS9vbWFyL0Rlc2t0b3AvUHJvdG9mb2xpb193aXRob3V0X3JlZGlzL3NyYy9lbnRpdGllcy9GYWlsZWRBdHRlbXB0LmVudGl0eS50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge1xuICBFbnRpdHksXG4gIFByaW1hcnlHZW5lcmF0ZWRDb2x1bW4sXG4gIENvbHVtbixcbiAgQ3JlYXRlRGF0ZUNvbHVtbixcbiAgVXBkYXRlRGF0ZUNvbHVtbixcbiAgSW5kZXgsXG59IGZyb20gXCJ0eXBlb3JtXCI7XG5cbkBFbnRpdHkoKVxuQEluZGV4KFtcImVtYWlsXCIsIFwiaXBBZGRyZXNzXCIsIFwidHlwZVwiXSwgeyB1bmlxdWU6IHRydWUgfSkgLy8gQ29tcG9zaXRlIHVuaXF1ZSBjb25zdHJhaW50XG5ASW5kZXgoW1wiZW1haWxcIiwgXCJ0eXBlXCJdKSAvLyBJbmRleCBmb3IgZW1haWwtYmFzZWQgcXVlcmllc1xuQEluZGV4KFtcImlwQWRkcmVzc1wiLCBcInR5cGVcIl0pIC8vIEluZGV4IGZvciBJUC1iYXNlZCBxdWVyaWVzXG5leHBvcnQgY2xhc3MgRmFpbGVkQXR0ZW1wdCB7XG4gIEBQcmltYXJ5R2VuZXJhdGVkQ29sdW1uKClcbiAgaWQ6IG51bWJlcjtcblxuICBAQ29sdW1uKClcbiAgZW1haWw6IHN0cmluZztcblxuICBAQ29sdW1uKClcbiAgaXBBZGRyZXNzOiBzdHJpbmc7XG5cbiAgQENvbHVtbih7XG4gICAgdHlwZTogXCJlbnVtXCIsXG4gICAgZW51bTogW1wibG9naW5cIiwgXCJ2ZXJpZmljYXRpb25cIl0sXG4gIH0pXG4gIHR5cGU6IFwibG9naW5cIiB8IFwidmVyaWZpY2F0aW9uXCI7IC8vIFR5cGUgb2YgYXR0ZW1wdFxuXG4gIEBDb2x1bW4oeyBkZWZhdWx0OiAxIH0pXG4gIGF0dGVtcHRzOiBudW1iZXI7XG5cbiAgQENvbHVtbih7IG51bGxhYmxlOiB0cnVlIH0pXG4gIGxhc3RBdHRlbXB0OiBEYXRlO1xuXG4gIEBDb2x1bW4oeyBudWxsYWJsZTogdHJ1ZSB9KVxuICBsb2NrZWRVbnRpbDogRGF0ZTtcblxuICBAQ3JlYXRlRGF0ZUNvbHVtbigpXG4gIGNyZWF0ZWRBdDogRGF0ZTtcblxuICBAVXBkYXRlRGF0ZUNvbHVtbigpXG4gIHVwZGF0ZWRBdDogRGF0ZTtcbn1cbiJdLCJ2ZXJzaW9uIjozfQ==

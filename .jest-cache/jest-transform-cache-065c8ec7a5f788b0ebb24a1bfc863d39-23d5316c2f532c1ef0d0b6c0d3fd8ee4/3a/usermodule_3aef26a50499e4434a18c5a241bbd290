@@ -1,0 +1,30 @@
+985f6e1d84224d6268835ff3a25dc8a1
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserModule = void 0;
+const common_1 = require("@nestjs/common");
+const user_service_1 = require("./user.service");
+const user_controller_1 = require("./user.controller");
+const typeorm_1 = require("@nestjs/typeorm");
+const User_entity_1 = require("../entities/User.entity");
+const Review_entity_1 = require("../entities/Review.entity");
+const Product_entity_1 = require("../entities/Product.entity");
+const Cart_entity_1 = require("../entities/Cart.entity");
+const Cart_Item_entity_1 = require("../entities/Cart_Item.entity");
+let UserModule = class UserModule {
+};
+exports.UserModule = UserModule;
+exports.UserModule = UserModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([User_entity_1.User, Review_entity_1.Review, Product_entity_1.Product, Cart_entity_1.Cart, Cart_Item_entity_1.CartItem])],
+        providers: [user_service_1.UserService],
+        controllers: [user_controller_1.UserController],
+    })
+], UserModule);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL2hvbWUvb21hci9EZXNrdG9wL1Byb3RvZm9saW9fd2l0aG91dF9yZWRpcy9zcmMvdXNlci91c2VyLm1vZHVsZS50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFBQSwyQ0FBd0M7QUFDeEMsaURBQTZDO0FBQzdDLHVEQUFtRDtBQUNuRCw2Q0FBZ0Q7QUFDaEQseURBQStDO0FBQy9DLDZEQUFtRDtBQUNuRCwrREFBcUQ7QUFDckQseURBQStDO0FBQy9DLG1FQUF3RDtBQU9qRCxJQUFNLFVBQVUsR0FBaEIsTUFBTSxVQUFVO0NBQUcsQ0FBQTtBQUFiLGdDQUFVO3FCQUFWLFVBQVU7SUFMdEIsSUFBQSxlQUFNLEVBQUM7UUFDTixPQUFPLEVBQUUsQ0FBQyx1QkFBYSxDQUFDLFVBQVUsQ0FBQyxDQUFDLGtCQUFJLEVBQUUsc0JBQU0sRUFBRSx3QkFBTyxFQUFFLGtCQUFJLEVBQUUsMkJBQVEsQ0FBQyxDQUFDLENBQUM7UUFDNUUsU0FBUyxFQUFFLENBQUMsMEJBQVcsQ0FBQztRQUN4QixXQUFXLEVBQUUsQ0FBQyxnQ0FBYyxDQUFDO0tBQzlCLENBQUM7R0FDVyxVQUFVLENBQUciLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiL2hvbWUvb21hci9EZXNrdG9wL1Byb3RvZm9saW9fd2l0aG91dF9yZWRpcy9zcmMvdXNlci91c2VyLm1vZHVsZS50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBNb2R1bGUgfSBmcm9tIFwiQG5lc3Rqcy9jb21tb25cIjtcbmltcG9ydCB7IFVzZXJTZXJ2aWNlIH0gZnJvbSBcIi4vdXNlci5zZXJ2aWNlXCI7XG5pbXBvcnQgeyBVc2VyQ29udHJvbGxlciB9IGZyb20gXCIuL3VzZXIuY29udHJvbGxlclwiO1xuaW1wb3J0IHsgVHlwZU9ybU1vZHVsZSB9IGZyb20gXCJAbmVzdGpzL3R5cGVvcm1cIjtcbmltcG9ydCB7IFVzZXIgfSBmcm9tIFwiLi4vZW50aXRpZXMvVXNlci5lbnRpdHlcIjtcbmltcG9ydCB7IFJldmlldyB9IGZyb20gXCIuLi9lbnRpdGllcy9SZXZpZXcuZW50aXR5XCI7XG5pbXBvcnQgeyBQcm9kdWN0IH0gZnJvbSBcIi4uL2VudGl0aWVzL1Byb2R1Y3QuZW50aXR5XCI7XG5pbXBvcnQgeyBDYXJ0IH0gZnJvbSBcIi4uL2VudGl0aWVzL0NhcnQuZW50aXR5XCI7XG5pbXBvcnQgeyBDYXJ0SXRlbSB9IGZyb20gXCIuLi9lbnRpdGllcy9DYXJ0X0l0ZW0uZW50aXR5XCI7XG5cbkBNb2R1bGUoe1xuICBpbXBvcnRzOiBbVHlwZU9ybU1vZHVsZS5mb3JGZWF0dXJlKFtVc2VyLCBSZXZpZXcsIFByb2R1Y3QsIENhcnQsIENhcnRJdGVtXSldLFxuICBwcm92aWRlcnM6IFtVc2VyU2VydmljZV0sXG4gIGNvbnRyb2xsZXJzOiBbVXNlckNvbnRyb2xsZXJdLFxufSlcbmV4cG9ydCBjbGFzcyBVc2VyTW9kdWxlIHt9XG4iXSwidmVyc2lvbiI6M30=

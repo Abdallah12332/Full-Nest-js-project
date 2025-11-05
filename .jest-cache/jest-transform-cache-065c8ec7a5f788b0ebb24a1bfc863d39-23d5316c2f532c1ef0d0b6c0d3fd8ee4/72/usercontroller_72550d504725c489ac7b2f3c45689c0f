@@ -1,0 +1,138 @@
+5e285149a0c4836fd06486bef7da8148
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserController = void 0;
+const common_1 = require("@nestjs/common");
+const user_service_1 = require("./user.service");
+const user_dto_1 = require("./dto/user.dto");
+const auth_guard_1 = require("../auth/guards/auth.guard");
+const throttler_1 = require("@nestjs/throttler");
+const response_dto_1 = require("../common/dto/response.dto");
+let UserController = class UserController {
+    UserService;
+    constructor(UserService) {
+        this.UserService = UserService;
+    }
+    async Add_Review(dto) {
+        await this.UserService.Add_Review(dto.email, dto.comment, dto.productId, dto.rating);
+        return response_dto_1.ApiResponse.success("Review added successfully");
+    }
+    async Edit_Review(dto) {
+        await this.UserService.Edit_Review(dto.email, dto.reviewId, dto.comment, dto.rating);
+        return response_dto_1.ApiResponse.success("Review updated successfully");
+    }
+    async Remove_Review(dto) {
+        await this.UserService.Remove_Review(dto.email, dto.reviewId);
+        return response_dto_1.ApiResponse.success("Review removed successfully");
+    }
+    async Add_Cart_Item(dto) {
+        await this.UserService.Add_Cart_Item(dto.cartId, dto.productId);
+        return response_dto_1.ApiResponse.success("Item added to cart successfully");
+    }
+    async Remove_Cart_Item(dto) {
+        await this.UserService.Remove_Cart_Item(dto.cartId, dto.productId);
+        return response_dto_1.ApiResponse.success("Item removed from cart successfully");
+    }
+    async increase_Quantity(dto) {
+        await this.UserService.increase_Quantity(dto.cartItemId);
+        return response_dto_1.ApiResponse.success("Quantity increased successfully");
+    }
+    async decrease_Quantity(dto) {
+        await this.UserService.decrease_Quantity(dto.cartItemId);
+        return response_dto_1.ApiResponse.success("Quantity decreased successfully");
+    }
+    async SearchProducts(query) {
+        const searchTerm = query.searchTerm ?? "";
+        const p = query.page ? Number(query.page) : 1;
+        const result = await this.UserService.SearchProducts(searchTerm, p);
+        return new response_dto_1.PaginatedResponse("Products retrieved successfully", result.products, result.currentPage, result.totalPages, result.products.length, 10);
+    }
+    async FindProductsByCategory(query) {
+        const p = query.page ? Number(query.page) : 1;
+        const result = await this.UserService.FindProductsByCategory(query.categoryId, p);
+        return new response_dto_1.PaginatedResponse("Products retrieved successfully", result.products, result.currentPage, result.totalPages, result.products.length, 10);
+    }
+};
+exports.UserController = UserController;
+__decorate([
+    (0, common_1.Post)("Add_Review"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_b = typeof user_dto_1.AddReviewDto !== "undefined" && user_dto_1.AddReviewDto) === "function" ? _b : Object]),
+    __metadata("design:returntype", typeof (_c = typeof Promise !== "undefined" && Promise) === "function" ? _c : Object)
+], UserController.prototype, "Add_Review", null);
+__decorate([
+    (0, common_1.Post)("Edit_Review"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_d = typeof user_dto_1.EditReviewDto !== "undefined" && user_dto_1.EditReviewDto) === "function" ? _d : Object]),
+    __metadata("design:returntype", typeof (_e = typeof Promise !== "undefined" && Promise) === "function" ? _e : Object)
+], UserController.prototype, "Edit_Review", null);
+__decorate([
+    (0, common_1.Post)("Remove_Review"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_f = typeof user_dto_1.RemoveReviewDto !== "undefined" && user_dto_1.RemoveReviewDto) === "function" ? _f : Object]),
+    __metadata("design:returntype", typeof (_g = typeof Promise !== "undefined" && Promise) === "function" ? _g : Object)
+], UserController.prototype, "Remove_Review", null);
+__decorate([
+    (0, common_1.Post)("Add_Cart_Item"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_h = typeof user_dto_1.AddCartItemDto !== "undefined" && user_dto_1.AddCartItemDto) === "function" ? _h : Object]),
+    __metadata("design:returntype", typeof (_j = typeof Promise !== "undefined" && Promise) === "function" ? _j : Object)
+], UserController.prototype, "Add_Cart_Item", null);
+__decorate([
+    (0, common_1.Post)("Remove_Cart_Item"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_k = typeof user_dto_1.RemoveCartItemDto !== "undefined" && user_dto_1.RemoveCartItemDto) === "function" ? _k : Object]),
+    __metadata("design:returntype", typeof (_l = typeof Promise !== "undefined" && Promise) === "function" ? _l : Object)
+], UserController.prototype, "Remove_Cart_Item", null);
+__decorate([
+    (0, common_1.Post)("increase_Quantity"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_m = typeof user_dto_1.IncreaseQuantityDto !== "undefined" && user_dto_1.IncreaseQuantityDto) === "function" ? _m : Object]),
+    __metadata("design:returntype", typeof (_o = typeof Promise !== "undefined" && Promise) === "function" ? _o : Object)
+], UserController.prototype, "increase_Quantity", null);
+__decorate([
+    (0, common_1.Post)("decrease_Quantity"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_p = typeof user_dto_1.DecreaseQuantityDto !== "undefined" && user_dto_1.DecreaseQuantityDto) === "function" ? _p : Object]),
+    __metadata("design:returntype", typeof (_q = typeof Promise !== "undefined" && Promise) === "function" ? _q : Object)
+], UserController.prototype, "decrease_Quantity", null);
+__decorate([
+    (0, common_1.Get)("products_search/"),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_r = typeof user_dto_1.SearchProductsDto !== "undefined" && user_dto_1.SearchProductsDto) === "function" ? _r : Object]),
+    __metadata("design:returntype", typeof (_s = typeof Promise !== "undefined" && Promise) === "function" ? _s : Object)
+], UserController.prototype, "SearchProducts", null);
+__decorate([
+    (0, common_1.Get)("ProductCategory/"),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_t = typeof user_dto_1.FindProductsByCategoryDto !== "undefined" && user_dto_1.FindProductsByCategoryDto) === "function" ? _t : Object]),
+    __metadata("design:returntype", typeof (_u = typeof Promise !== "undefined" && Promise) === "function" ? _u : Object)
+], UserController.prototype, "FindProductsByCategory", null);
+exports.UserController = UserController = __decorate([
+    (0, common_1.Controller)("user"),
+    (0, common_1.UseGuards)(auth_guard_1.JwtAuthGuard, throttler_1.ThrottlerGuard),
+    __metadata("design:paramtypes", [typeof (_a = typeof user_service_1.UserService !== "undefined" && user_service_1.UserService) === "function" ? _a : Object])
+], UserController);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL2hvbWUvb21hci9EZXNrdG9wL1Byb3RvZm9saW9fd2l0aG91dF9yZWRpcy9zcmMvdXNlci91c2VyLmNvbnRyb2xsZXIudHMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLDJDQUErRTtBQUMvRSxpREFBNkM7QUFDN0MsNkNBVXdCO0FBQ3hCLDBEQUF5RDtBQUN6RCxpREFBbUQ7QUFFbkQsNkRBQTRFO0FBSXJFLElBQU0sY0FBYyxHQUFwQixNQUFNLGNBQWM7SUFDSTtJQUE3QixZQUE2QixXQUF3QjtRQUF4QixnQkFBVyxHQUFYLFdBQVcsQ0FBYTtJQUFHLENBQUM7SUFFbkQsQUFBTixLQUFLLENBQUMsVUFBVSxDQUFTLEdBQWlCO1FBQ3hDLE1BQU0sSUFBSSxDQUFDLFdBQVcsQ0FBQyxVQUFVLENBQy9CLEdBQUcsQ0FBQyxLQUFLLEVBQ1QsR0FBRyxDQUFDLE9BQU8sRUFDWCxHQUFHLENBQUMsU0FBUyxFQUNiLEdBQUcsQ0FBQyxNQUFNLENBQ1gsQ0FBQztRQUNGLE9BQU8sMEJBQVcsQ0FBQyxPQUFPLENBQUMsMkJBQTJCLENBQUMsQ0FBQztJQUMxRCxDQUFDO0lBRUssQUFBTixLQUFLLENBQUMsV0FBVyxDQUFTLEdBQWtCO1FBQzFDLE1BQU0sSUFBSSxDQUFDLFdBQVcsQ0FBQyxXQUFXLENBQ2hDLEdBQUcsQ0FBQyxLQUFLLEVBQ1QsR0FBRyxDQUFDLFFBQVEsRUFDWixHQUFHLENBQUMsT0FBTyxFQUNYLEdBQUcsQ0FBQyxNQUFNLENBQ1gsQ0FBQztRQUNGLE9BQU8sMEJBQVcsQ0FBQyxPQUFPLENBQUMsNkJBQTZCLENBQUMsQ0FBQztJQUM1RCxDQUFDO0lBR0ssQUFBTixLQUFLLENBQUMsYUFBYSxDQUFTLEdBQW9CO1FBQzlDLE1BQU0sSUFBSSxDQUFDLFdBQVcsQ0FBQyxhQUFhLENBQUMsR0FBRyxDQUFDLEtBQUssRUFBRSxHQUFHLENBQUMsUUFBUSxDQUFDLENBQUM7UUFDOUQsT0FBTywwQkFBVyxDQUFDLE9BQU8sQ0FBQyw2QkFBNkIsQ0FBQyxDQUFDO0lBQzVE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LENBQUM7SUFDbEIsSUFBQSxrQkFBUyxFQUFDLHlCQUFZLEVBQUUsMEJBQWMsQ0FBQzt5REFFSSwwQkFBVyxvQkFBWCwwQkFBVztHQUQxQyxjQUFjLENBc0YxQiIsIm5hbWVzIjpbXSwic291cmNlcyI6WyIvaG9tZS9vbWFyL0Rlc2t0b3AvUHJvdG9mb2xpb193aXRob3V0X3JlZGlzL3NyYy91c2VyL3VzZXIuY29udHJvbGxlci50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb250cm9sbGVyLCBQb3N0LCBCb2R5LCBVc2VHdWFyZHMsIEdldCwgUXVlcnkgfSBmcm9tIFwiQG5lc3Rqcy9jb21tb25cIjtcbmltcG9ydCB7IFVzZXJTZXJ2aWNlIH0gZnJvbSBcIi4vdXNlci5zZXJ2aWNlXCI7XG5pbXBvcnQge1xuICBBZGRSZXZpZXdEdG8sXG4gIEVkaXRSZXZpZXdEdG8sXG4gIFJlbW92ZVJldmlld0R0byxcbiAgQWRkQ2FydEl0ZW1EdG8sXG4gIFJlbW92ZUNhcnRJdGVtRHRvLFxuICBJbmNyZWFzZVF1YW50aXR5RHRvLFxuICBEZWNyZWFzZVF1YW50aXR5RHRvLFxuICBGaW5kUHJvZHVjdHNCeUNhdGVnb3J5RHRvLFxuICBTZWFyY2hQcm9kdWN0c0R0byxcbn0gZnJvbSBcIi4vZHRvL3VzZXIuZHRvXCI7XG5pbXBvcnQgeyBKd3RBdXRoR3VhcmQgfSBmcm9tIFwiLi4vYXV0aC9ndWFyZHMvYXV0aC5ndWFyZFwiO1xuaW1wb3J0IHsgVGhyb3R0bGVyR3VhcmQgfSBmcm9tIFwiQG5lc3Rqcy90aHJvdHRsZXJcIjtcbmltcG9ydCB7IFByb2R1Y3QgfSBmcm9tIFwiLi4vZW50aXRpZXMvUHJvZHVjdC5lbnRpdHlcIjtcbmltcG9ydCB7IEFwaVJlc3BvbnNlLCBQYWdpbmF0ZWRSZXNwb25zZSB9IGZyb20gXCIuLi9jb21tb24vZHRvL3Jlc3BvbnNlLmR0b1wiO1xuXG5AQ29udHJvbGxlcihcInVzZXJcIilcbkBVc2VHdWFyZHMoSnd0QXV0aEd1YXJkLCBUaHJvdHRsZXJHdWFyZClcbmV4cG9ydCBjbGFzcyBVc2VyQ29udHJvbGxlciB7XG4gIGNvbnN0cnVjdG9yKHByaXZhdGUgcmVhZG9ubHkgVXNlclNlcnZpY2U6IFVzZXJTZXJ2aWNlKSB7fVxuICBAUG9zdChcIkFkZF9SZXZpZXdcIilcbiAgYXN5bmMgQWRkX1JldmlldyhAQm9keSgpIGR0bzogQWRkUmV2aWV3RHRvKTogUHJvbWlzZTxBcGlSZXNwb25zZT4ge1xuICAgIGF3YWl0IHRoaXMuVXNlclNlcnZpY2UuQWRkX1JldmlldyhcbiAgICAgIGR0by5lbWFpbCxcbiAgICAgIGR0by5jb21tZW50LFxuICAgICAgZHRvLnByb2R1Y3RJZCxcbiAgICAgIGR0by5yYXRpbmcsXG4gICAgKTtcbiAgICByZXR1cm4gQXBpUmVzcG9uc2Uuc3VjY2VzcyhcIlJldmlldyBhZGRlZCBzdWNjZXNzZnVsbHlcIik7XG4gIH1cbiAgQFBvc3QoXCJFZGl0X1Jldmlld1wiKVxuICBhc3luYyBFZGl0X1JldmlldyhAQm9keSgpIGR0bzogRWRpdFJldmlld0R0byk6IFByb21pc2U8QXBpUmVzcG9uc2U+IHtcbiAgICBhd2FpdCB0aGlzLlVzZXJTZXJ2aWNlLkVkaXRfUmV2aWV3KFxuICAgICAgZHRvLmVtYWlsLFxuICAgICAgZHRvLnJldmlld0lkLFxuICAgICAgZHRvLmNvbW1lbnQsXG4gICAgICBkdG8ucmF0aW5nLFxuICAgICk7XG4gICAgcmV0dXJuIEFwaVJlc3BvbnNlLnN1Y2Nlc3MoXCJSZXZpZXcgdXBkYXRlZCBzdWNjZXNzZnVsbHlcIik7XG4gIH1cblxuICBAUG9zdChcIlJlbW92ZV9SZXZpZXdcIilcbiAgYXN5bmMgUmVtb3ZlX1JldmlldyhAQm9keSgpIGR0bzogUmVtb3ZlUmV2aWV3RHRvKTogUHJvbWlzZTxBcGlSZXNwb25zZT4ge1xuICAgIGF3YWl0IHRoaXMuVXNlclNlcnZpY2UuUmVtb3ZlX1JldmlldyhkdG8uZW1haWwsIGR0by5yZXZpZXdJZCk7XG4gICAgcmV0dXJuIEFwaVJlc3BvbnNlLnN1Y2Nlc3MoXCJSZXZpZXcgcmVtb3ZlZCBzdWNjZXNzZnVsbHlcIik7XG4gIH1cbiAgQFBvc3QoXCJBZGRfQ2FydF9JdGVtXCIpXG4gIGFzeW5jIEFkZF9DYXJ0X0l0ZW0oQEJvZHkoKSBkdG86IEFkZENhcnRJdGVtRHRvKTogUHJvbWlzZTxBcGlSZXNwb25zZT4ge1xuICAgIGF3YWl0IHRoaXMuVXNlclNlcnZpY2UuQWRkX0NhcnRfSXRlbShkdG8uY2FydElkLCBkdG8ucHJvZHVjdElkKTtcbiAgICByZXR1cm4gQXBpUmVzcG9uc2Uuc3VjY2VzcyhcIkl0ZW0gYWRkZWQgdG8gY2FydCBzdWNjZXNzZnVsbHlcIik7XG4gIH1cbiAgQFBvc3QoXCJSZW1vdmVfQ2FydF9JdGVtXCIpXG4gIGFzeW5jIFJlbW92ZV9DYXJ0X0l0ZW0oQEJvZHkoKSBkdG86IFJlbW92ZUNhcnRJdGVtRHRvKTogUHJvbWlzZTxBcGlSZXNwb25zZT4ge1xuICAgIGF3YWl0IHRoaXMuVXNlclNlcnZpY2UuUmVtb3ZlX0NhcnRfSXRlbShkdG8uY2FydElkLCBkdG8ucHJvZHVjdElkKTtcbiAgICByZXR1cm4gQXBpUmVzcG9uc2Uuc3VjY2VzcyhcIkl0ZW0gcmVtb3ZlZCBmcm9tIGNhcnQgc3VjY2Vzc2Z1bGx5XCIpO1xuICB9XG4gIEBQb3N0KFwiaW5jcmVhc2VfUXVhbnRpdHlcIilcbiAgYXN5bmMgaW5jcmVhc2VfUXVhbnRpdHkoXG4gICAgQEJvZHkoKSBkdG86IEluY3JlYXNlUXVhbnRpdHlEdG8sXG4gICk6IFByb21pc2U8QXBpUmVzcG9uc2U+IHtcbiAgICBhd2FpdCB0aGlzLlVzZXJTZXJ2aWNlLmluY3JlYXNlX1F1YW50aXR5KGR0by5jYXJ0SXRlbUlkKTtcbiAgICByZXR1cm4gQXBpUmVzcG9uc2Uuc3VjY2VzcyhcIlF1YW50aXR5IGluY3JlYXNlZCBzdWNjZXNzZnVsbHlcIik7XG4gIH1cbiAgQFBvc3QoXCJkZWNyZWFzZV9RdWFudGl0eVwiKVxuICBhc3luYyBkZWNyZWFzZV9RdWFudGl0eShcbiAgICBAQm9keSgpIGR0bzogRGVjcmVhc2VRdWFudGl0eUR0byxcbiAgKTogUHJvbWlzZTxBcGlSZXNwb25zZT4ge1xuICAgIGF3YWl0IHRoaXMuVXNlclNlcnZpY2UuZGVjcmVhc2VfUXVhbnRpdHkoZHRvLmNhcnRJdGVtSWQpO1xuICAgIHJldHVybiBBcGlSZXNwb25zZS5zdWNjZXNzKFwiUXVhbnRpdHkgZGVjcmVhc2VkIHN1Y2Nlc3NmdWxseVwiKTtcbiAgfVxuICBAR2V0KFwicHJvZHVjdHNfc2VhcmNoL1wiKVxuICBhc3luYyBTZWFyY2hQcm9kdWN0cyhcbiAgICBAUXVlcnkoKSBxdWVyeTogU2VhcmNoUHJvZHVjdHNEdG8sXG4gICk6IFByb21pc2U8UGFnaW5hdGVkUmVzcG9uc2U8UHJvZHVjdD4+IHtcbiAgICBjb25zdCBzZWFyY2hUZXJtID0gcXVlcnkuc2VhcmNoVGVybSA/PyBcIlwiO1xuICAgIGNvbnN0IHAgPSBxdWVyeS5wYWdlID8gTnVtYmVyKHF1ZXJ5LnBhZ2UpIDogMTtcbiAgICBjb25zdCByZXN1bHQgPSBhd2FpdCB0aGlzLlVzZXJTZXJ2aWNlLlNlYXJjaFByb2R1Y3RzKHNlYXJjaFRlcm0sIHApO1xuICAgIHJldHVybiBuZXcgUGFnaW5hdGVkUmVzcG9uc2UoXG4gICAgICBcIlByb2R1Y3RzIHJldHJpZXZlZCBzdWNjZXNzZnVsbHlcIixcbiAgICAgIHJlc3VsdC5wcm9kdWN0cyxcbiAgICAgIHJlc3VsdC5jdXJyZW50UGFnZSxcbiAgICAgIHJlc3VsdC50b3RhbFBhZ2VzLFxuICAgICAgcmVzdWx0LnByb2R1Y3RzLmxlbmd0aCxcbiAgICAgIDEwLCAvLyBpdGVtc1BlclBhZ2UgLSB5b3UgbWF5IG5lZWQgdG8gYWRqdXN0IHRoaXMgYmFzZWQgb24geW91ciBzZXJ2aWNlXG4gICAgKTtcbiAgfVxuICBAR2V0KFwiUHJvZHVjdENhdGVnb3J5L1wiKVxuICBhc3luYyBGaW5kUHJvZHVjdHNCeUNhdGVnb3J5KFxuICAgIEBRdWVyeSgpIHF1ZXJ5OiBGaW5kUHJvZHVjdHNCeUNhdGVnb3J5RHRvLFxuICApOiBQcm9taXNlPFBhZ2luYXRlZFJlc3BvbnNlPFByb2R1Y3Q+PiB7XG4gICAgY29uc3QgcCA9IHF1ZXJ5LnBhZ2UgPyBOdW1iZXIocXVlcnkucGFnZSkgOiAxO1xuICAgIGNvbnN0IHJlc3VsdCA9IGF3YWl0IHRoaXMuVXNlclNlcnZpY2UuRmluZFByb2R1Y3RzQnlDYXRlZ29yeShcbiAgICAgIHF1ZXJ5LmNhdGVnb3J5SWQsXG4gICAgICBwLFxuICAgICk7XG4gICAgcmV0dXJuIG5ldyBQYWdpbmF0ZWRSZXNwb25zZShcbiAgICAgIFwiUHJvZHVjdHMgcmV0cmlldmVkIHN1Y2Nlc3NmdWxseVwiLFxuICAgICAgcmVzdWx0LnByb2R1Y3RzLFxuICAgICAgcmVzdWx0LmN1cnJlbnRQYWdlLFxuICAgICAgcmVzdWx0LnRvdGFsUGFnZXMsXG4gICAgICByZXN1bHQucHJvZHVjdHMubGVuZ3RoLFxuICAgICAgMTAsIC8vIGl0ZW1zUGVyUGFnZSAtIHlvdSBtYXkgbmVlZCB0byBhZGp1c3QgdGhpcyBiYXNlZCBvbiB5b3VyIHNlcnZpY2VcbiAgICApO1xuICB9XG59XG4iXSwidmVyc2lvbiI6M30=

@@ -1,0 +1,15 @@
+70d57990cb35adf559736a50f8864367
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createApp = createApp;
+const testing_1 = require("@nestjs/testing");
+const app_module_1 = require("../src/app.module");
+async function createApp() {
+    const moduleRef = await testing_1.Test.createTestingModule({
+        imports: [app_module_1.AppModule],
+    }).compile();
+    const app = moduleRef.createNestApplication();
+    await app.init();
+    return app;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL2hvbWUvb21hci9EZXNrdG9wL1Byb3RvZm9saW9fd2l0aG91dF9yZWRpcy90ZXN0L3NldHVwLnRzIiwibWFwcGluZ3MiOiI7O0FBSUEsOEJBUUM7QUFaRCw2Q0FBdUM7QUFDdkMsa0RBQThDO0FBR3ZDLEtBQUssVUFBVSxTQUFTO0lBQzdCLE1BQU0sU0FBUyxHQUFHLE1BQU0sY0FBSSxDQUFDLG1CQUFtQixDQUFDO1FBQy9DLE9BQU8sRUFBRSxDQUFDLHNCQUFTLENBQUM7S0FDckIsQ0FBQyxDQUFDLE9BQU8sRUFBRSxDQUFDO0lBRWIsTUFBTSxHQUFHLEdBQUcsU0FBUyxDQUFDLHFCQUFxQixFQUFFLENBQUM7SUFDOUMsTUFBTSxHQUFHLENBQUMsSUFBSSxFQUFFLENBQUM7SUFDakIsT0FBTyxHQUFHLENBQUM7QUFDYixDQUFDIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIi9ob21lL29tYXIvRGVza3RvcC9Qcm90b2ZvbGlvX3dpdGhvdXRfcmVkaXMvdGVzdC9zZXR1cC50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBUZXN0IH0gZnJvbSAnQG5lc3Rqcy90ZXN0aW5nJztcbmltcG9ydCB7IEFwcE1vZHVsZSB9IGZyb20gJy4uL3NyYy9hcHAubW9kdWxlJztcbmltcG9ydCB7IElOZXN0QXBwbGljYXRpb24gfSBmcm9tICdAbmVzdGpzL2NvbW1vbic7XG5cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBjcmVhdGVBcHAoKTogUHJvbWlzZTxJTmVzdEFwcGxpY2F0aW9uPiB7XG4gIGNvbnN0IG1vZHVsZVJlZiA9IGF3YWl0IFRlc3QuY3JlYXRlVGVzdGluZ01vZHVsZSh7XG4gICAgaW1wb3J0czogW0FwcE1vZHVsZV0sXG4gIH0pLmNvbXBpbGUoKTtcblxuICBjb25zdCBhcHAgPSBtb2R1bGVSZWYuY3JlYXRlTmVzdEFwcGxpY2F0aW9uKCk7XG4gIGF3YWl0IGFwcC5pbml0KCk7XG4gIHJldHVybiBhcHA7XG59XG4iXSwidmVyc2lvbiI6M30=

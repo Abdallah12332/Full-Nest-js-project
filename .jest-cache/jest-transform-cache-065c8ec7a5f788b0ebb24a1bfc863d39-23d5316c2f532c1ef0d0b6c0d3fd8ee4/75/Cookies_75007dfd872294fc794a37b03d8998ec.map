@@ -1,0 +1,1 @@
+{"version":3,"names":[],"sources":["/home/omar/Desktop/Protofolio_without_redis/src/auth/Cookies.ts"],"sourcesContent":["export interface Cookies {\n  refresh_Token?: string;\n  access_Token?: string;\n}\n"],"mappings":"","ignoreList":[]}

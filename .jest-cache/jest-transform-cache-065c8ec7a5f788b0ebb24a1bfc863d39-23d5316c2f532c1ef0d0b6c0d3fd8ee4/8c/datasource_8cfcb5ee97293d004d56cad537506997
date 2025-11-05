@@ -1,0 +1,309 @@
+059f631248fee1e9c2b37921b4e13b0b
+"use strict";
+
+/* istanbul ignore next */
+function cov_jit7zc154() {
+  var path = "/home/omar/Desktop/Protofolio_without_redis/src/data-source.ts";
+  var hash = "9234e83d668071ea9192ef35d05c801f4a91a84a";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/home/omar/Desktop/Protofolio_without_redis/src/data-source.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 2,
+          column: 0
+        },
+        end: {
+          line: 2,
+          column: 62
+        }
+      },
+      "1": {
+        start: {
+          line: 3,
+          column: 0
+        },
+        end: {
+          line: 3,
+          column: 31
+        }
+      },
+      "2": {
+        start: {
+          line: 4,
+          column: 18
+        },
+        end: {
+          line: 4,
+          column: 36
+        }
+      },
+      "3": {
+        start: {
+          line: 5,
+          column: 22
+        },
+        end: {
+          line: 5,
+          column: 55
+        }
+      },
+      "4": {
+        start: {
+          line: 6,
+          column: 25
+        },
+        end: {
+          line: 6,
+          column: 61
+        }
+      },
+      "5": {
+        start: {
+          line: 7,
+          column: 22
+        },
+        end: {
+          line: 7,
+          column: 55
+        }
+      },
+      "6": {
+        start: {
+          line: 8,
+          column: 27
+        },
+        end: {
+          line: 8,
+          column: 65
+        }
+      },
+      "7": {
+        start: {
+          line: 9,
+          column: 23
+        },
+        end: {
+          line: 9,
+          column: 57
+        }
+      },
+      "8": {
+        start: {
+          line: 10,
+          column: 24
+        },
+        end: {
+          line: 10,
+          column: 59
+        }
+      },
+      "9": {
+        start: {
+          line: 11,
+          column: 31
+        },
+        end: {
+          line: 11,
+          column: 73
+        }
+      },
+      "10": {
+        start: {
+          line: 12,
+          column: 31
+        },
+        end: {
+          line: 12,
+          column: 73
+        }
+      },
+      "11": {
+        start: {
+          line: 13,
+          column: 30
+        },
+        end: {
+          line: 13,
+          column: 71
+        }
+      },
+      "12": {
+        start: {
+          line: 14,
+          column: 21
+        },
+        end: {
+          line: 14,
+          column: 53
+        }
+      },
+      "13": {
+        start: {
+          line: 15,
+          column: 27
+        },
+        end: {
+          line: 15,
+          column: 65
+        }
+      },
+      "14": {
+        start: {
+          line: 16,
+          column: 0
+        },
+        end: {
+          line: 41,
+          column: 3
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 39,
+            column: 25
+          },
+          end: {
+            line: 39,
+            column: 63
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 39,
+            column: 25
+          },
+          end: {
+            line: 39,
+            column: 57
+          }
+        }, {
+          start: {
+            line: 39,
+            column: 61
+          },
+          end: {
+            line: 39,
+            column: 63
+          }
+        }],
+        line: 39
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0
+    },
+    f: {},
+    b: {
+      "0": [0, 0]
+    },
+    inputSourceMap: {
+      file: "/home/omar/Desktop/Protofolio_without_redis/src/data-source.ts",
+      mappings: ";;;AAAA,qCAAqC;AACrC,wDAA8C;AAC9C,8DAAoD;AACpD,wDAA8C;AAC9C,kEAAuD;AACvD,0DAAgD;AAChD,4DAAkD;AAClD,0EAAgE;AAChE,0EAAgE;AAChE,wEAA8D;AAC9D,sDAA4C;AAC5C,kEAAoE;AAEvD,QAAA,aAAa,GAAG,IAAI,oBAAU,CAAC;IAC1C,IAAI,EAAE,SAAS;IACf,IAAI,EAAE,OAAO,CAAC,GAAG,CAAC,OAAO;IACzB,IAAI,EAAE,MAAM,CAAC,OAAO,CAAC,GAAG,CAAC,OAAO,CAAC;IACjC,QAAQ,EAAE,OAAO,CAAC,GAAG,CAAC,OAAO;IAC7B,QAAQ,EAAE,OAAO,CAAC,GAAG,CAAC,OAAO;IAC7B,QAAQ,EAAE,OAAO,CAAC,GAAG,CAAC,OAAO;IAC7B,QAAQ,EAAE;QACR,kBAAI;QACJ,wBAAO;QACP,kBAAI;QACJ,2BAAQ;QACR,oBAAK;QACL,sBAAM;QACN,kCAAY;QACZ,oCAAa;QACb,oCAAa;QACb,gBAAG;QACH,wCAAqB;KACtB;IACD,UAAU,EAAE,CAAC,sBAAsB,CAAC;IACpC,WAAW,EAAE,KAAK;IAClB,KAAK,EAAE;QACL,eAAe,EAAE,MAAM,CAAC,OAAO,CAAC,GAAG,CAAC,YAAY,CAAC,IAAI,EAAE;KACxD;CACF,CAAC,CAAC",
+      names: [],
+      sources: ["/home/omar/Desktop/Protofolio_without_redis/src/data-source.ts"],
+      sourcesContent: ["import { DataSource } from \"typeorm\";\nimport { User } from \"./entities/User.entity\";\nimport { Product } from \"./entities/Product.entity\";\nimport { Cart } from \"./entities/Cart.entity\";\nimport { CartItem } from \"./entities/Cart_Item.entity\";\nimport { Order } from \"./entities/Order.entity\";\nimport { Review } from \"./entities/Review.entity\";\nimport { FailedAttempt } from \"./entities/FailedAttempt.entity\";\nimport { PasswordReset } from \"./entities/PasswordReset.entity\";\nimport { Verification } from \"./entities/Verification.entity\";\nimport { Log } from \"./entities/Log.entity\";\nimport { RefreshTokenBlacklist } from \"./entities/BlackList.entity\";\n\nexport const AppDataSource = new DataSource({\n  type: \"mariadb\",\n  host: process.env.DB_HOST,\n  port: Number(process.env.DB_PORT),\n  username: process.env.DB_USER,\n  password: process.env.DB_PASS,\n  database: process.env.DB_NAME,\n  entities: [\n    User,\n    Product,\n    Cart,\n    CartItem,\n    Order,\n    Review,\n    Verification,\n    FailedAttempt,\n    PasswordReset,\n    Log,\n    RefreshTokenBlacklist,\n  ],\n  migrations: [\"dist/migrations/*.js\"],\n  synchronize: false,\n  extra: {\n    connectionLimit: Number(process.env.DB_POOL_SIZE) || 10,\n  },\n});\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "9234e83d668071ea9192ef35d05c801f4a91a84a"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_jit7zc154 = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_jit7zc154();
+cov_jit7zc154().s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/* istanbul ignore next */
+cov_jit7zc154().s[1]++;
+exports.AppDataSource = void 0;
+const typeorm_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[2]++, require("typeorm"));
+const User_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[3]++, require("./entities/User.entity"));
+const Product_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[4]++, require("./entities/Product.entity"));
+const Cart_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[5]++, require("./entities/Cart.entity"));
+const Cart_Item_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[6]++, require("./entities/Cart_Item.entity"));
+const Order_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[7]++, require("./entities/Order.entity"));
+const Review_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[8]++, require("./entities/Review.entity"));
+const FailedAttempt_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[9]++, require("./entities/FailedAttempt.entity"));
+const PasswordReset_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[10]++, require("./entities/PasswordReset.entity"));
+const Verification_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[11]++, require("./entities/Verification.entity"));
+const Log_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[12]++, require("./entities/Log.entity"));
+const BlackList_entity_1 =
+/* istanbul ignore next */
+(cov_jit7zc154().s[13]++, require("./entities/BlackList.entity"));
+/* istanbul ignore next */
+cov_jit7zc154().s[14]++;
+exports.AppDataSource = new typeorm_1.DataSource({
+  type: "mariadb",
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  entities: [User_entity_1.User, Product_entity_1.Product, Cart_entity_1.Cart, Cart_Item_entity_1.CartItem, Order_entity_1.Order, Review_entity_1.Review, Verification_entity_1.Verification, FailedAttempt_entity_1.FailedAttempt, PasswordReset_entity_1.PasswordReset, Log_entity_1.Log, BlackList_entity_1.RefreshTokenBlacklist],
+  migrations: ["dist/migrations/*.js"],
+  synchronize: false,
+  extra: {
+    connectionLimit:
+    /* istanbul ignore next */
+    (cov_jit7zc154().b[0][0]++, Number(process.env.DB_POOL_SIZE)) ||
+    /* istanbul ignore next */
+    (cov_jit7zc154().b[0][1]++, 10)
+  }
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3Zfaml0N3pjMTU0IiwiYWN0dWFsQ292ZXJhZ2UiLCJzIiwidHlwZW9ybV8xIiwicmVxdWlyZSIsIlVzZXJfZW50aXR5XzEiLCJQcm9kdWN0X2VudGl0eV8xIiwiQ2FydF9lbnRpdHlfMSIsIkNhcnRfSXRlbV9lbnRpdHlfMSIsIk9yZGVyX2VudGl0eV8xIiwiUmV2aWV3X2VudGl0eV8xIiwiRmFpbGVkQXR0ZW1wdF9lbnRpdHlfMSIsIlBhc3N3b3JkUmVzZXRfZW50aXR5XzEiLCJWZXJpZmljYXRpb25fZW50aXR5XzEiLCJMb2dfZW50aXR5XzEiLCJCbGFja0xpc3RfZW50aXR5XzEiLCJleHBvcnRzIiwiQXBwRGF0YVNvdXJjZSIsIkRhdGFTb3VyY2UiLCJ0eXBlIiwiaG9zdCIsInByb2Nlc3MiLCJlbnYiLCJEQl9IT1NUIiwicG9ydCIsIk51bWJlciIsIkRCX1BPUlQiLCJ1c2VybmFtZSIsIkRCX1VTRVIiLCJwYXNzd29yZCIsIkRCX1BBU1MiLCJkYXRhYmFzZSIsIkRCX05BTUUiLCJlbnRpdGllcyIsIlVzZXIiLCJQcm9kdWN0IiwiQ2FydCIsIkNhcnRJdGVtIiwiT3JkZXIiLCJSZXZpZXciLCJWZXJpZmljYXRpb24iLCJGYWlsZWRBdHRlbXB0IiwiUGFzc3dvcmRSZXNldCIsIkxvZyIsIlJlZnJlc2hUb2tlbkJsYWNrbGlzdCIsIm1pZ3JhdGlvbnMiLCJzeW5jaHJvbml6ZSIsImV4dHJhIiwiY29ubmVjdGlvbkxpbWl0IiwiYiIsIkRCX1BPT0xfU0laRSJdLCJzb3VyY2VzIjpbIi9ob21lL29tYXIvRGVza3RvcC9Qcm90b2ZvbGlvX3dpdGhvdXRfcmVkaXMvc3JjL2RhdGEtc291cmNlLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERhdGFTb3VyY2UgfSBmcm9tIFwidHlwZW9ybVwiO1xuaW1wb3J0IHsgVXNlciB9IGZyb20gXCIuL2VudGl0aWVzL1VzZXIuZW50aXR5XCI7XG5pbXBvcnQgeyBQcm9kdWN0IH0gZnJvbSBcIi4vZW50aXRpZXMvUHJvZHVjdC5lbnRpdHlcIjtcbmltcG9ydCB7IENhcnQgfSBmcm9tIFwiLi9lbnRpdGllcy9DYXJ0LmVudGl0eVwiO1xuaW1wb3J0IHsgQ2FydEl0ZW0gfSBmcm9tIFwiLi9lbnRpdGllcy9DYXJ0X0l0ZW0uZW50aXR5XCI7XG5pbXBvcnQgeyBPcmRlciB9IGZyb20gXCIuL2VudGl0aWVzL09yZGVyLmVudGl0eVwiO1xuaW1wb3J0IHsgUmV2aWV3IH0gZnJvbSBcIi4vZW50aXRpZXMvUmV2aWV3LmVudGl0eVwiO1xuaW1wb3J0IHsgRmFpbGVkQXR0ZW1wdCB9IGZyb20gXCIuL2VudGl0aWVzL0ZhaWxlZEF0dGVtcHQuZW50aXR5XCI7XG5pbXBvcnQgeyBQYXNzd29yZFJlc2V0IH0gZnJvbSBcIi4vZW50aXRpZXMvUGFzc3dvcmRSZXNldC5lbnRpdHlcIjtcbmltcG9ydCB7IFZlcmlmaWNhdGlvbiB9IGZyb20gXCIuL2VudGl0aWVzL1ZlcmlmaWNhdGlvbi5lbnRpdHlcIjtcbmltcG9ydCB7IExvZyB9IGZyb20gXCIuL2VudGl0aWVzL0xvZy5lbnRpdHlcIjtcbmltcG9ydCB7IFJlZnJlc2hUb2tlbkJsYWNrbGlzdCB9IGZyb20gXCIuL2VudGl0aWVzL0JsYWNrTGlzdC5lbnRpdHlcIjtcblxuZXhwb3J0IGNvbnN0IEFwcERhdGFTb3VyY2UgPSBuZXcgRGF0YVNvdXJjZSh7XG4gIHR5cGU6IFwibWFyaWFkYlwiLFxuICBob3N0OiBwcm9jZXNzLmVudi5EQl9IT1NULFxuICBwb3J0OiBOdW1iZXIocHJvY2Vzcy5lbnYuREJfUE9SVCksXG4gIHVzZXJuYW1lOiBwcm9jZXNzLmVudi5EQl9VU0VSLFxuICBwYXNzd29yZDogcHJvY2Vzcy5lbnYuREJfUEFTUyxcbiAgZGF0YWJhc2U6IHByb2Nlc3MuZW52LkRCX05BTUUsXG4gIGVudGl0aWVzOiBbXG4gICAgVXNlcixcbiAgICBQcm9kdWN0LFxuICAgIENhcnQsXG4gICAgQ2FydEl0ZW0sXG4gICAgT3JkZXIsXG4gICAgUmV2aWV3LFxuICAgIFZlcmlmaWNhdGlvbixcbiAgICBGYWlsZWRBdHRlbXB0LFxuICAgIFBhc3N3b3JkUmVzZXQsXG4gICAgTG9nLFxuICAgIFJlZnJlc2hUb2tlbkJsYWNrbGlzdCxcbiAgXSxcbiAgbWlncmF0aW9uczogW1wiZGlzdC9taWdyYXRpb25zLyouanNcIl0sXG4gIHN5bmNocm9uaXplOiBmYWxzZSxcbiAgZXh0cmE6IHtcbiAgICBjb25uZWN0aW9uTGltaXQ6IE51bWJlcihwcm9jZXNzLmVudi5EQl9QT09MX1NJWkUpIHx8IDEwLFxuICB9LFxufSk7XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBYWE7SUFBQUEsYUFBQSxZQUFBQSxDQUFBO01BQUEsT0FBQUMsY0FBQTtJQUFBO0VBQUE7RUFBQSxPQUFBQSxjQUFBO0FBQUE7QUFBQUQsYUFBQTtBQUFBQSxhQUFBLEdBQUFFLENBQUE7Ozs7Ozs7QUFiYixNQUFBQyxTQUFBO0FBQUE7QUFBQSxDQUFBSCxhQUFBLEdBQUFFLENBQUEsT0FBQUUsT0FBQTtBQUNBLE1BQUFDLGFBQUE7QUFBQTtBQUFBLENBQUFMLGFBQUEsR0FBQUUsQ0FBQSxPQUFBRSxPQUFBO0FBQ0EsTUFBQUUsZ0JBQUE7QUFBQTtBQUFBLENBQUFOLGFBQUEsR0FBQUUsQ0FBQSxPQUFBRSxPQUFBO0FBQ0EsTUFBQUcsYUFBQTtBQUFBO0FBQUEsQ0FBQVAsYUFBQSxHQUFBRSxDQUFBLE9BQUFFLE9BQUE7QUFDQSxNQUFBSSxrQkFBQTtBQUFBO0FBQUEsQ0FBQVIsYUFBQSxHQUFBRSxDQUFBLE9BQUFFLE9BQUE7QUFDQSxNQUFBSyxjQUFBO0FBQUE7QUFBQSxDQUFBVCxhQUFBLEdBQUFFLENBQUEsT0FBQUUsT0FBQTtBQUNBLE1BQUFNLGVBQUE7QUFBQTtBQUFBLENBQUFWLGFBQUEsR0FBQUUsQ0FBQSxPQUFBRSxPQUFBO0FBQ0EsTUFBQU8sc0JBQUE7QUFBQTtBQUFBLENBQUFYLGFBQUEsR0FBQUUsQ0FBQSxPQUFBRSxPQUFBO0FBQ0EsTUFBQVEsc0JBQUE7QUFBQTtBQUFBLENBQUFaLGFBQUEsR0FBQUUsQ0FBQSxRQUFBRSxPQUFBO0FBQ0EsTUFBQVMscUJBQUE7QUFBQTtBQUFBLENBQUFiLGFBQUEsR0FBQUUsQ0FBQSxRQUFBRSxPQUFBO0FBQ0EsTUFBQVUsWUFBQTtBQUFBO0FBQUEsQ0FBQWQsYUFBQSxHQUFBRSxDQUFBLFFBQUFFLE9BQUE7QUFDQSxNQUFBVyxrQkFBQTtBQUFBO0FBQUEsQ0FBQWYsYUFBQSxHQUFBRSxDQUFBLFFBQUFFLE9BQUE7QUFBb0U7QUFBQUosYUFBQSxHQUFBRSxDQUFBO0FBRXZEYyxPQUFBLENBQUFDLGFBQWEsR0FBRyxJQUFJZCxTQUFBLENBQUFlLFVBQVUsQ0FBQztFQUMxQ0MsSUFBSSxFQUFFLFNBQVM7RUFDZkMsSUFBSSxFQUFFQyxPQUFPLENBQUNDLEdBQUcsQ0FBQ0MsT0FBTztFQUN6QkMsSUFBSSxFQUFFQyxNQUFNLENBQUNKLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDSSxPQUFPLENBQUM7RUFDakNDLFFBQVEsRUFBRU4sT0FBTyxDQUFDQyxHQUFHLENBQUNNLE9BQU87RUFDN0JDLFFBQVEsRUFBRVIsT0FBTyxDQUFDQyxHQUFHLENBQUNRLE9BQU87RUFDN0JDLFFBQVEsRUFBRVYsT0FBTyxDQUFDQyxHQUFHLENBQUNVLE9BQU87RUFDN0JDLFFBQVEsRUFBRSxDQUNSNUIsYUFBQSxDQUFBNkIsSUFBSSxFQUNKNUIsZ0JBQUEsQ0FBQTZCLE9BQU8sRUFDUDVCLGFBQUEsQ0FBQTZCLElBQUksRUFDSjVCLGtCQUFBLENBQUE2QixRQUFRLEVBQ1I1QixjQUFBLENBQUE2QixLQUFLLEVBQ0w1QixlQUFBLENBQUE2QixNQUFNLEVBQ04xQixxQkFBQSxDQUFBMkIsWUFBWSxFQUNaN0Isc0JBQUEsQ0FBQThCLGFBQWEsRUFDYjdCLHNCQUFBLENBQUE4QixhQUFhLEVBQ2I1QixZQUFBLENBQUE2QixHQUFHLEVBQ0g1QixrQkFBQSxDQUFBNkIscUJBQXFCLENBQ3RCO0VBQ0RDLFVBQVUsRUFBRSxDQUFDLHNCQUFzQixDQUFDO0VBQ3BDQyxXQUFXLEVBQUUsS0FBSztFQUNsQkMsS0FBSyxFQUFFO0lBQ0xDLGVBQWU7SUFBRTtJQUFBLENBQUFoRCxhQUFBLEdBQUFpRCxDQUFBLFVBQUF4QixNQUFNLENBQUNKLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDNEIsWUFBWSxDQUFDO0lBQUE7SUFBQSxDQUFBbEQsYUFBQSxHQUFBaUQsQ0FBQSxVQUFJLEVBQUU7O0NBRTFELENBQUMiLCJpZ25vcmVMaXN0IjpbXX0=

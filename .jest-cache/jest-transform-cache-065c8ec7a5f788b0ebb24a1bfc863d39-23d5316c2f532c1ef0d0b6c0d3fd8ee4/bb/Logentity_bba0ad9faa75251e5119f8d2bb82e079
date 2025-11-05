@@ -1,0 +1,48 @@
+9d75c42316e36c74696169e9f70389a3
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Log = void 0;
+// src/Entity/Log.entity.ts
+const typeorm_1 = require("typeorm");
+let Log = class Log {
+    id;
+    level; // info, error, warn
+    message;
+    context;
+    timestamp;
+};
+exports.Log = Log;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], Log.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Log.prototype, "level", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "longtext" }),
+    __metadata("design:type", String)
+], Log.prototype, "message", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Log.prototype, "context", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+], Log.prototype, "timestamp", void 0);
+exports.Log = Log = __decorate([
+    (0, typeorm_1.Entity)()
+], Log);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL2hvbWUvb21hci9EZXNrdG9wL1Byb3RvZm9saW9fd2l0aG91dF9yZWRpcy9zcmMvZW50aXRpZXMvTG9nLmVudGl0eS50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7O0FBQUEsMkJBQTJCO0FBQzNCLHFDQUtpQjtBQUdWLElBQU0sR0FBRyxHQUFULE1BQU0sR0FBRztJQUVkLEVBQUUsQ0FBUztJQUdYLEtBQUssQ0FBUyxDQUFDLG9CQUFvQjtJQUduQyxPQUFPLENBQVM7SUFHaEIsT0FBTyxDQUFVO0lBR2pCLFNBQVMsQ0FBTztDQUNqQixDQUFBO0FBZlksa0JBQUc7QUFFZDtJQURDLElBQUEsZ0NBQXNCLEdBQUU7OytCQUNkO0FBR1g7SUFEQyxJQUFBLGdCQUFNLEdBQUU7O2tDQUNLO0FBR2Q7SUFEQyxJQUFBLGdCQUFNLEVBQUMsRUFBRSxJQUFJLEVBQUUsVUFBVSxFQUFFLENBQUM7O29DQUNiO0FBR2hCO0lBREMsSUFBQSxnQkFBTSxFQUFDLEVBQUUsUUFBUSxFQUFFLElBQUksRUFBRSxDQUFDOztvQ0FDVjtBQUdqQjtJQURDLElBQUEsMEJBQWdCLEdBQUU7a0RBQ1IsSUFBSSxvQkFBSixJQUFJO3NDQUFDO2NBZEwsR0FBRztJQURmLElBQUEsZ0JBQU0sR0FBRTtHQUNJLEdBQUcsQ0FlZiIsIm5hbWVzIjpbXSwic291cmNlcyI6WyIvaG9tZS9vbWFyL0Rlc2t0b3AvUHJvdG9mb2xpb193aXRob3V0X3JlZGlzL3NyYy9lbnRpdGllcy9Mb2cuZW50aXR5LnRzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIHNyYy9FbnRpdHkvTG9nLmVudGl0eS50c1xuaW1wb3J0IHtcbiAgRW50aXR5LFxuICBQcmltYXJ5R2VuZXJhdGVkQ29sdW1uLFxuICBDb2x1bW4sXG4gIENyZWF0ZURhdGVDb2x1bW4sXG59IGZyb20gXCJ0eXBlb3JtXCI7XG5cbkBFbnRpdHkoKVxuZXhwb3J0IGNsYXNzIExvZyB7XG4gIEBQcmltYXJ5R2VuZXJhdGVkQ29sdW1uKClcbiAgaWQ6IG51bWJlcjtcblxuICBAQ29sdW1uKClcbiAgbGV2ZWw6IHN0cmluZzsgLy8gaW5mbywgZXJyb3IsIHdhcm5cblxuICBAQ29sdW1uKHsgdHlwZTogXCJsb25ndGV4dFwiIH0pXG4gIG1lc3NhZ2U6IHN0cmluZztcblxuICBAQ29sdW1uKHsgbnVsbGFibGU6IHRydWUgfSlcbiAgY29udGV4dD86IHN0cmluZztcblxuICBAQ3JlYXRlRGF0ZUNvbHVtbigpXG4gIHRpbWVzdGFtcDogRGF0ZTtcbn1cbiJdLCJ2ZXJzaW9uIjozfQ==

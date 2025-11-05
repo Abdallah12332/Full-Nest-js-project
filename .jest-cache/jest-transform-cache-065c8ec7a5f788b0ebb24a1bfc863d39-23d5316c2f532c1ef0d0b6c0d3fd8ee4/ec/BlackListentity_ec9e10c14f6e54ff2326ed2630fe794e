@@ -1,0 +1,43 @@
+b1d3c93a21da75fd9dadf78fe877c3da
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RefreshTokenBlacklist = void 0;
+const typeorm_1 = require("typeorm");
+let RefreshTokenBlacklist = class RefreshTokenBlacklist {
+    id;
+    token;
+    userId;
+    blacklistedAt;
+};
+exports.RefreshTokenBlacklist = RefreshTokenBlacklist;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
+    __metadata("design:type", String)
+], RefreshTokenBlacklist.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "text" }),
+    __metadata("design:type", String)
+], RefreshTokenBlacklist.prototype, "token", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "uuid", nullable: true }),
+    __metadata("design:type", String)
+], RefreshTokenBlacklist.prototype, "userId", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)({ type: "timestamp" }),
+    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+], RefreshTokenBlacklist.prototype, "blacklistedAt", void 0);
+exports.RefreshTokenBlacklist = RefreshTokenBlacklist = __decorate([
+    (0, typeorm_1.Entity)(),
+    (0, typeorm_1.Index)(["token"], { unique: true })
+], RefreshTokenBlacklist);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL2hvbWUvb21hci9EZXNrdG9wL1Byb3RvZm9saW9fd2l0aG91dF9yZWRpcy9zcmMvZW50aXRpZXMvQmxhY2tMaXN0LmVudGl0eS50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7O0FBQUEscUNBTWlCO0FBSVYsSUFBTSxxQkFBcUIsR0FBM0IsTUFBTSxxQkFBcUI7SUFFaEMsRUFBRSxDQUFTO0lBR1gsS0FBSyxDQUFTO0lBR2QsTUFBTSxDQUFTO0lBR2YsYUFBYSxDQUFPO0NBQ3JCLENBQUE7QUFaWSxzREFBcUI7QUFFaEM7SUFEQyxJQUFBLGdDQUFzQixFQUFDLE1BQU0sQ0FBQzs7aURBQ3BCO0FBR1g7SUFEQyxJQUFBLGdCQUFNLEVBQUMsRUFBRSxJQUFJLEVBQUUsTUFBTSxFQUFFLENBQUM7O29EQUNYO0FBR2Q7SUFEQyxJQUFBLGdCQUFNLEVBQUMsRUFBRSxJQUFJLEVBQUUsTUFBTSxFQUFFLFFBQVEsRUFBRSxJQUFJLEVBQUUsQ0FBQzs7cURBQzFCO0FBR2Y7SUFEQyxJQUFBLDBCQUFnQixFQUFDLEVBQUUsSUFBSSxFQUFFLFdBQVcsRUFBRSxDQUFDO2tEQUN6QixJQUFJLG9CQUFKLElBQUk7NERBQUM7Z0NBWFQscUJBQXFCO0lBRmpDLElBQUEsZ0JBQU0sR0FBRTtJQUNSLElBQUEsZUFBSyxFQUFDLENBQUMsT0FBTyxDQUFDLEVBQUUsRUFBRSxNQUFNLEVBQUUsSUFBSSxFQUFFLENBQUM7R0FDdEIscUJBQXFCLENBWWpDIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIi9ob21lL29tYXIvRGVza3RvcC9Qcm90b2ZvbGlvX3dpdGhvdXRfcmVkaXMvc3JjL2VudGl0aWVzL0JsYWNrTGlzdC5lbnRpdHkudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtcbiAgRW50aXR5LFxuICBDb2x1bW4sXG4gIFByaW1hcnlHZW5lcmF0ZWRDb2x1bW4sXG4gIENyZWF0ZURhdGVDb2x1bW4sXG4gIEluZGV4LFxufSBmcm9tIFwidHlwZW9ybVwiO1xuXG5ARW50aXR5KClcbkBJbmRleChbXCJ0b2tlblwiXSwgeyB1bmlxdWU6IHRydWUgfSlcbmV4cG9ydCBjbGFzcyBSZWZyZXNoVG9rZW5CbGFja2xpc3Qge1xuICBAUHJpbWFyeUdlbmVyYXRlZENvbHVtbihcInV1aWRcIilcbiAgaWQ6IHN0cmluZztcblxuICBAQ29sdW1uKHsgdHlwZTogXCJ0ZXh0XCIgfSlcbiAgdG9rZW46IHN0cmluZztcblxuICBAQ29sdW1uKHsgdHlwZTogXCJ1dWlkXCIsIG51bGxhYmxlOiB0cnVlIH0pXG4gIHVzZXJJZDogc3RyaW5nO1xuXG4gIEBDcmVhdGVEYXRlQ29sdW1uKHsgdHlwZTogXCJ0aW1lc3RhbXBcIiB9KVxuICBibGFja2xpc3RlZEF0OiBEYXRlO1xufVxuIl0sInZlcnNpb24iOjN9

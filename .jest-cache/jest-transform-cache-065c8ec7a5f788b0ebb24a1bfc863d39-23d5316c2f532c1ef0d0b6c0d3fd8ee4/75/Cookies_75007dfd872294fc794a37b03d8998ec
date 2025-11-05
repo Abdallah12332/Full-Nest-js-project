@@ -1,0 +1,60 @@
+e7f4eafbf37bae585c329e2eaa9ce361
+"use strict";
+
+/* istanbul ignore next */
+function cov_13r12e36pv() {
+  var path = "/home/omar/Desktop/Protofolio_without_redis/src/auth/Cookies.ts";
+  var hash = "053a0f0e1969a16320644c01320fcd0db8a2699d";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/home/omar/Desktop/Protofolio_without_redis/src/auth/Cookies.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 2,
+          column: 0
+        },
+        end: {
+          line: 2,
+          column: 62
+        }
+      }
+    },
+    fnMap: {},
+    branchMap: {},
+    s: {
+      "0": 0
+    },
+    f: {},
+    b: {},
+    inputSourceMap: {
+      file: "/home/omar/Desktop/Protofolio_without_redis/src/auth/Cookies.ts",
+      mappings: "",
+      names: [],
+      sources: ["/home/omar/Desktop/Protofolio_without_redis/src/auth/Cookies.ts"],
+      sourcesContent: ["export interface Cookies {\n  refresh_Token?: string;\n  access_Token?: string;\n}\n"],
+      version: 3
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "053a0f0e1969a16320644c01320fcd0db8a2699d"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_13r12e36pv = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_13r12e36pv();
+cov_13r12e36pv().s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiL2hvbWUvb21hci9EZXNrdG9wL1Byb3RvZm9saW9fd2l0aG91dF9yZWRpcy9zcmMvYXV0aC9Db29raWVzLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBpbnRlcmZhY2UgQ29va2llcyB7XG4gIHJlZnJlc2hfVG9rZW4/OiBzdHJpbmc7XG4gIGFjY2Vzc19Ub2tlbj86IHN0cmluZztcbn1cbiJdLCJtYXBwaW5ncyI6IiIsImlnbm9yZUxpc3QiOltdfQ==
