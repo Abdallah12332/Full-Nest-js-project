@@ -1,4 +1,4 @@
-# Full NestJS Project (Without Redis)
+# Full NestJS Project
 
 A complete project using **NestJS** for a user and record management application, without using Redis.
 
@@ -21,6 +21,8 @@ A complete project using **NestJS** for a user and record management application
 - Use TypeORM with an SQL database.
 
 - Organized modules (Modules / Services / Controllers / DTOs).
+
+- tests
 
 ---
 
