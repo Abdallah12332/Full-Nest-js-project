@@ -1,10 +1,14 @@
 {
-  "name": "back",
+  "name": "protofolio_back",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Backend API for Protofolio e-commerce platform",
+  "author": "Omar moragame660@gmail.com",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Abdallah12332/Full-Nest-js-project.git"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

@@ -1,5 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Matches,
+  MinLength,
+} from "class-validator";
 
 // ================= HALF REGISTER =================
 export class RegisterHalfDto {
@@ -44,6 +51,15 @@ export class RegisterCompleteDto {
   })
   @IsString()
   @IsNotEmpty()
+  @MinLength(8, { message: "Password must be at least 8 characters" })
+  @Matches(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+
+    {
+      message:
+        "Password must contain uppercase, lowercase, number and special character",
+    },
+  )
   password: string;
 }
 

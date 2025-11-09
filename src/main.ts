@@ -13,15 +13,19 @@ import * as express from "express";
 
 async function bootstrap() {
   const httpsOptions = {
-    key: fs.readFileSync("./secrets/private-key.pem"),
-    cert: fs.readFileSync("./secrets/certificate.pem"),
+    key: fs.readFileSync(
+      process.env.SSL_KEY_PATH || "./secrets/private-key.pem",
+    ),
+    cert: fs.readFileSync(
+      process.env.SSL_CERT_PATH || "./secrets/certificate.pem",
+    ),
   };
 
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     httpsOptions,
   });
-
   const configService = app.get(ConfigService);
+
   // Enable gzip compression
   app.use(compression.default({ level: 6 }));
   app.use(cookieParser());

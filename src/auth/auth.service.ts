@@ -176,15 +176,15 @@ export class AuthService {
   async register_full(email: string, code: string, ipAddress: string) {
     const ok = await this.VerficationRepo.findOne({ where: { email } });
     if (!ok) {
-      throw new NotFoundException("Email:code not found");
+      throw new NotFoundException("Invalid email or code");
     }
     if (new Date() > ok.expiresAt) {
-      throw new BadRequestException("code is expired");
+      throw new BadRequestException("Invalid email or code");
     }
     if (ok.code !== code) {
       // Record failed verification attempt
       await this.recordFailedAttempt(email, ipAddress, "verification");
-      throw new BadRequestException("invalid code");
+      throw new BadRequestException("Invalid email or code");
     }
 
     // Clear failed attempts on successful verification
@@ -206,10 +206,10 @@ export class AuthService {
   async register_complete(email: string, password: string) {
     const user = await this.userRepository.findOne({ where: { email } });
     if (!user) {
-      throw new NotFoundException("user not found");
+      throw new NotFoundException("Invalid email");
     }
     if (user.isVerified === true) {
-      throw new BadRequestException("that's verified user");
+      throw new BadRequestException("Invalid email");
     }
 
     const hashed_password = await bcrypt.hash(password, 10);
@@ -251,36 +251,37 @@ export class AuthService {
     if (!user) {
       if (email && ipAddress)
         await this.recordFailedAttempt(email, ipAddress, "login");
-      throw new NotFoundException("User not found");
+      throw new NotFoundException("Invalid email or password");
     }
     const hashed_password = user.password;
     if (!hashed_password) {
       if (email && ipAddress)
         await this.recordFailedAttempt(email, ipAddress, "login");
-      throw new NotFoundException("password not set");
+      throw new NotFoundException("Invalid email or password");
     }
     if (!password) {
       if (email && ipAddress)
         await this.recordFailedAttempt(email, ipAddress, "login");
-      throw new NotFoundException("write password");
+      throw new NotFoundException("Invalid email or password");
     }
     if (user.isVerified === false) {
-      throw new UnauthorizedException("blocked");
+      throw new UnauthorizedException("Invalid email or password");
     }
     const ok = await bcrypt.compare(password, hashed_password);
     if (!ok) {
       if (email && ipAddress)
         await this.recordFailedAttempt(email, ipAddress, "login");
-      throw new BadRequestException("password is wrong");
+      throw new BadRequestException("Invalid email or password");
     }
 
     // Clear failed attempts on successful login
     if (email && ipAddress)
       await this.clearFailedAttempts(email, ipAddress, "login");
 
-    const payload = {
-      id: user.id,
-      email: user.email,
+    const payload: JwtPayload = {
+      sub: user.id,
+      username: user.email,
+      role: user.role,
     };
     const envrefresh = String(
       this.configService.get<string>("JWT_EXPIRES_REFRESHTOKEN"),
@@ -301,15 +302,15 @@ export class AuthService {
   async requestPasswordReset(email: string) {
     const user = await this.userRepository.findOne({ where: { email } });
     if (!user) {
-      throw new NotFoundException("User not found");
+      throw new NotFoundException("Invalid email");
     }
 
     // Check if user has a password set
     if (!user.password) {
-      throw new BadRequestException("Password not set for this account");
+      throw new BadRequestException("Invalid email");
     }
     if (user.isVerified === false) {
-      throw new UnauthorizedException("Blocked");
+      throw new UnauthorizedException("Invalid email");
     }
 
     // Generate reset token
@@ -348,20 +349,20 @@ export class AuthService {
     });
 
     if (!resetRecord) {
-      throw new NotFoundException("Invalid reset token");
+      throw new NotFoundException("Invalid email or token");
     }
 
     if (resetRecord.used) {
-      throw new BadRequestException("Reset token already used");
+      throw new BadRequestException("Invalid email or token");
     }
 
     if (new Date() > resetRecord.expiresAt) {
-      throw new BadRequestException("Reset token expired");
+      throw new BadRequestException("Invalid email or token");
     }
 
     const user = await this.userRepository.findOne({ where: { email } });
     if (!user) {
-      throw new NotFoundException("User not found");
+      throw new NotFoundException("Invalid email or token");
     }
 
     // Hash new password
@@ -378,20 +379,20 @@ export class AuthService {
   // تحسين دالة log_out
   async log_out(email: string, refresh_Token: string) {
     if (!refresh_Token) {
-      throw new BadRequestException("Refresh token is required");
+      throw new BadRequestException("Invalid email");
     }
 
     // البحث عن المستخدم
     const user = await this.userRepository.findOne({ where: { email } });
     if (!user) {
-      throw new NotFoundException("User not found");
+      throw new NotFoundException("Invalid email");
     }
     // التحقق من أن الـ refresh token يطابق المخزن
     const isValidToken = user.refresh_Token
       ? await bcrypt.compare(refresh_Token, user.refresh_Token)
       : false;
     if (!isValidToken) {
-      throw new UnauthorizedException("Invalid refresh token");
+      throw new UnauthorizedException("Invalid email");
     }
 
     // إضافة الـ refresh token للقائمة السوداء
@@ -405,7 +406,7 @@ export class AuthService {
 
   async validateGoogleUser(profile: GoogleProfile) {
     if (!profile.emails || profile.emails.length === 0) {
-      throw new BadRequestException("Email not found");
+      throw new BadRequestException("Invalid email");
     }
 
     let user = await this.userRepository.findOne({
@@ -428,7 +429,7 @@ export class AuthService {
       await this.CartRepo.save(cart);
     } else if (!user.googleId) {
       if (!user.isVerified) {
-        throw new UnauthorizedException("Blocked");
+        throw new UnauthorizedException("Invalid email");
       }
       await this.userRepository.update(
         { id: user.id },
@@ -487,7 +488,7 @@ export class AuthService {
         issuer: "Protofolio",
       });
     } catch {
-      throw new UnauthorizedException("Invalid or expired refresh token");
+      throw new UnauthorizedException("Invalid email");
     }
 
     // التحقق من القائمة السوداء - باستخدام التوكن الأصلي (غير المشفر)
@@ -495,29 +496,29 @@ export class AuthService {
       where: { token: refreshToken },
     });
     if (isBlacklisted) {
-      throw new UnauthorizedException("Refresh token has been revoked");
+      throw new UnauthorizedException("Invalid email");
     }
 
     // البحث عن المستخدم
     const user = await this.userRepository.findOne({ where: { email } });
     if (!user) {
-      throw new NotFoundException("User not found");
+      throw new NotFoundException("Invalid email");
     }
 
     // التحقق من حالة المستخدم
     if (!user.isVerified) {
-      throw new UnauthorizedException("User not verified");
+      throw new UnauthorizedException("Invalid email");
     }
 
     // التحقق من وجود refresh token مخزن
     if (!user.refresh_Token) {
-      throw new UnauthorizedException("No refresh token stored");
+      throw new UnauthorizedException("Invalid email");
     }
 
     // تحقق من تطابق refresh token مع المخزن في قاعدة البيانات
     const isMatch = await bcrypt.compare(refreshToken, user.refresh_Token);
     if (!isMatch) {
-      throw new UnauthorizedException("Refresh token mismatch");
+      throw new UnauthorizedException("Invalid email");
     }
 
     // إنشاء tokens جديدة

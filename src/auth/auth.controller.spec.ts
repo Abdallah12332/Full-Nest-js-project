@@ -126,8 +126,8 @@ describe("AuthController", () => {
         "refreshToken",
         "refresh-signed-token",
         expect.objectContaining({
-          httpOnly: false,
-          secure: true,
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
           path: "/update_token",
         }),
@@ -202,7 +202,7 @@ describe("AuthController", () => {
         "refreshToken",
         "refresh-token-value",
         {
-          httpOnly: false,
+          httpOnly: true,
           secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
           path: "/update_token",
@@ -361,7 +361,7 @@ describe("AuthController", () => {
         "refreshToken",
         "refresh-token-value",
         {
-          httpOnly: false,
+          httpOnly: true,
           secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
           path: "/update_token",
@@ -458,8 +458,8 @@ describe("AuthController", () => {
   describe("update_token", () => {
     it("should call authService.update_token with email and refresh_Token from cookie", async () => {
       const req = {
-        cookies: { refresh_Token: "cookie-token" },
-      } as unknown as Request & { cookies: { refresh_Token?: string } };
+        cookies: { refreshToken: "cookie-token" },
+      } as unknown as Request & { cookies: { refreshToken?: string } };
 
       (authService.update_token as jest.Mock).mockResolvedValue({
         access_token: "new-access-token",

@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { AdminModule } from "./admin/admin.module";
@@ -43,8 +48,7 @@ import { CsrfMiddleware } from "./csrf.middleware";
         DB_POOL_SIZE: Joi.number().required(),
         JWT_EXPIRES_ACCESSTOKEN: Joi.string().required(),
         JWT_EXPIRES_REFRESHTOKEN: Joi.string().required(),
-        CORS: Joi.string() /*.uri()*/
-          .required(),
+        CORS: Joi.string().uri().required(),
         PORT: Joi.string().required(),
         NODE_ENV: Joi.string().required(),
       }),
@@ -52,8 +56,14 @@ import { CsrfMiddleware } from "./csrf.middleware";
     ThrottlerModule.forRoot({
       throttlers: [
         {
+          name: "short",
           ttl: 60,
-          limit: 10,
+          limit: 5,
+        },
+        {
+          name: "medium",
+          ttl: 600,
+          limit: 20,
         },
       ],
     }),
@@ -106,6 +116,14 @@ import { CsrfMiddleware } from "./csrf.middleware";
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(CsrfMiddleware).forRoutes("");
+    consumer.apply(CsrfMiddleware).forRoutes(
+      { path: "*", method: RequestMethod.POST },
+
+      { path: "*", method: RequestMethod.PUT },
+
+      { path: "*", method: RequestMethod.DELETE },
+
+      { path: "*", method: RequestMethod.PATCH },
+    );
   }
 }

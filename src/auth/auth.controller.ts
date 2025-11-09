@@ -59,13 +59,15 @@ export class AuthController {
       dto.email,
       dto.password,
     );
-    const refresh_Token = result.refresh_Token;
-    if (!refresh_Token) throw new NotFoundException("refresh_token not found");
+    const refreshToken = result.refresh_Token;
+    if (!refreshToken) throw new NotFoundException("refresh_token not found");
     const access_token = result.access_token;
     if (!access_token) throw new NotFoundException("access token not found");
-    res.cookie("refreshToken", refresh_Token, {
-      httpOnly: false,
-      secure: true,
+    const ismatch = this.configService.get("NODE_ENV") === "production";
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: ismatch,
       sameSite: "strict",
       path: "/update_token",
       maxAge: 7 * 24 * 60 * 60 * 1000,
@@ -88,13 +90,13 @@ export class AuthController {
       dto.password,
       ipAddress,
     );
-    const refresh_Token = result.refresh_Token;
-    if (!refresh_Token) throw new NotFoundException("refersh_token not found");
+    const refreshToken = result.refresh_Token;
+    if (!refreshToken) throw new NotFoundException("refersh_token not found");
     const access_token = result.access_token;
     if (!access_token) throw new NotFoundException("not found access token");
     const ismatch = this.configService.get("NODE_ENV") === "production";
-    res.cookie("refreshToken", refresh_Token, {
-      httpOnly: false,
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
       secure: ismatch,
       sameSite: "strict",
       path: "/update_token",
@@ -142,15 +144,15 @@ export class AuthController {
     };
 
     const google = await this.authService.validateGoogleUser(profile);
-    const refresh_Token = google.refresh_Token;
-    if (!refresh_Token) throw new NotFoundException("not found refresh token");
+    const refreshToken = google.refresh_Token;
+    if (!refreshToken) throw new NotFoundException("not found refresh token");
     const access_token = google.token;
     if (!access_token) throw new NotFoundException("not found access token");
     const user = google.user;
     if (!user) throw new NotFoundException("user not found");
     const ismatch = this.configService.get("NODE_ENV") === "production";
-    res.cookie("refreshToken", refresh_Token, {
-      httpOnly: false,
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
       secure: ismatch,
       sameSite: "strict",
       path: "/update_token",
@@ -164,14 +166,14 @@ export class AuthController {
     @Req() req: Request,
   ): Promise<ApiResponse<{ access_token: string }>> {
     const cookies = req.cookies as Cookies;
-    const refresh_Token = cookies.refresh_Token;
+    const refreshToken = cookies.refreshToken;
 
-    if (!refresh_Token) {
+    if (!refreshToken) {
       throw new NotFoundException("no refresh Token");
     }
     const access_token = await this.authService.update_token(
       email,
-      refresh_Token,
+      refreshToken,
     );
     return ApiResponse.success("Token refreshed successfully", {
       access_token: access_token.access_token,

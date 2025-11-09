@@ -1,4 +1,4 @@
 export interface Cookies {
-  refresh_Token?: string;
+  refreshToken?: string;
   access_Token?: string;
 }
