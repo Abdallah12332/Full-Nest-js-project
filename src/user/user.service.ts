@@ -10,6 +10,7 @@ import { User } from "../entities/User.entity";
 import { Product } from "../entities/Product.entity";
 import { Review } from "../entities/Review.entity";
 import { CartItem } from "../entities/Cart_Item.entity";
+import { CachService } from "../cach/cach.service";
 
 @Injectable()
 export class UserService {
@@ -24,6 +25,7 @@ export class UserService {
     private readonly ReviewRepo: Repository<Review>,
     @InjectRepository(CartItem)
     private readonly CartItemRepo: Repository<CartItem>,
+    private cachService: CachService,
   ) {}
   async Add_Review(
     email: string,
@@ -162,6 +164,13 @@ export class UserService {
     try {
       const limit = 20;
       const skip = (Math.max(1, page) - 1) * limit;
+      const cacheKey = `search:${searchTerm}:${page}`;
+      const cached = await this.cachService.get<{
+        products: Product[];
+        currentPage: number;
+        totalPages: number;
+      }>(cacheKey);
+      if (cached) return cached;
 
       const qb = this.ProductRepo.createQueryBuilder("product")
         .where("product.name LIKE :searchTerm", {
@@ -178,6 +187,7 @@ export class UserService {
       const totalPages = Math.max(1, Math.ceil(total / limit));
 
       const result = { products, currentPage: page, totalPages };
+      await this.cachService.set(cacheKey, result);
       return result;
     } catch (err) {
       throw new Error("Failed to search products: " + err);
@@ -190,7 +200,13 @@ export class UserService {
     try {
       const limit = 20;
       const skip = (Math.max(1, page) - 1) * limit;
-
+      const cachedKey = `category:${categoryId}:${page}`;
+      const cached = await this.cachService.get<{
+        products: Product[];
+        currentPage: number;
+        totalPages: number;
+      }>(cachedKey);
+      if (cached) return cached;
       const qb = this.ProductRepo.createQueryBuilder("product")
         .where("product.categoryId = :categoryId", { categoryId })
         .leftJoinAndSelect("product.reviews", "reviews")
@@ -201,6 +217,7 @@ export class UserService {
       const totalPages = Math.max(1, Math.ceil(total / limit));
 
       const result = { products, currentPage: page, totalPages };
+      await this.cachService.set(cachedKey, result);
       return result;
     } catch (err) {
       throw new Error("Failed to fetch products by category: " + err);

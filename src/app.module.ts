@@ -28,9 +28,23 @@ import { AllExceptionsFilter } from "./log/filters/all-exceptions.filter";
 import { Log } from "./entities/Log.entity";
 import { RefreshTokenBlacklist } from "./entities/BlackList.entity";
 import { CsrfMiddleware } from "./csrf.middleware";
+import { CachModule } from "./cach/cach.module";
+import { CacheModule } from "@nestjs/cache-manager";
+import * as redisStore from "cache-manager-ioredis";
 
 @Module({
   imports: [
+    CacheModule.registerAsync({
+      isGlobal: true,
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        store: redisStore,
+        host: config.get<string>("localhost"),
+        port: config.get<number>("REDIS_PORT"),
+        ttl: config.get<number>("REDIS_TTL"),
+      }),
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
@@ -51,6 +65,11 @@ import { CsrfMiddleware } from "./csrf.middleware";
         CORS: Joi.string().uri().required(),
         PORT: Joi.string().required(),
         NODE_ENV: Joi.string().required(),
+        SSL_KEY_PATH: Joi.string().required(),
+        SSL_CERT_PATH: Joi.string().required(),
+        REDIS_HOST: Joi.string().required(),
+        REDIS_PORT: Joi.number().required(),
+        REDIS_TTL: Joi.number().required(),
       }),
     }),
     ThrottlerModule.forRoot({
@@ -100,6 +119,7 @@ import { CsrfMiddleware } from "./csrf.middleware";
     AuthModule,
     UserModule,
     LogModule,
+    CachModule,
   ],
   controllers: [AppController],
   providers: [

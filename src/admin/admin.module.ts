@@ -8,11 +8,13 @@ import { Product } from "../entities/Product.entity";
 import { Review } from "../entities/Review.entity";
 import { CartItem } from "../entities/Cart_Item.entity";
 import { LogModule } from "../log/log.module";
+import { CachModule } from "../cach/cach.module";
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User, Cart, Product, Review, CartItem]),
     LogModule,
+    CachModule,
   ],
   providers: [AdminService],
   controllers: [AdminController],

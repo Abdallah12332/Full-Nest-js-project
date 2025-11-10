@@ -12,6 +12,7 @@ import { Product } from "../entities/Product.entity";
 import { Review } from "../entities/Review.entity";
 import { Repository } from "typeorm";
 import { CartItem } from "../entities/Cart_Item.entity";
+import { CachService } from "../cach/cach.service";
 
 @Injectable()
 export class AdminService {
@@ -26,10 +27,15 @@ export class AdminService {
     private readonly ReviewRepo: Repository<Review>,
     @InjectRepository(CartItem)
     private readonly CartItem: Repository<CartItem>,
+    private CachService: CachService,
   ) {}
   async FindLimitUser(take: number, skip: number): Promise<User[]> {
     try {
+      const cached_key = `users:${take + "" + skip}`;
+      const cached = await this.CachService.get<User[]>(cached_key);
+      if (cached) return cached;
       const users = await this.UserRepo.find({ skip: skip, take: take });
+      await this.CachService.set(cached_key, users);
       return users;
     } catch (err) {
       throw new Error("Failed to create user: " + err);
@@ -38,10 +44,14 @@ export class AdminService {
 
   async FindUser(id: string): Promise<User> {
     try {
+      const cached_key = `user:${id}`;
+      const cached = await this.CachService.get<User>(cached_key);
+      if (cached) return cached;
       const user = await this.UserRepo.findOne({ where: { id } });
       if (!user) {
         throw new NotFoundException(`User with id ${id} not found`);
       }
+      await this.CachService.set(cached_key, user);
       return user;
     } catch (err) {
       if (err instanceof NotFoundException) throw err;
@@ -104,11 +114,16 @@ export class AdminService {
   // Product operations
   async FindLimitProducts(take: number, skip: number): Promise<Product[]> {
     try {
+      const cached_key = `products:${take + " " + skip}`;
+      const cached = await this.CachService.get<Product[]>(cached_key);
+      if (cached) return cached;
       const products = await this.ProductRepo.find({
         skip: skip,
         take: take,
         relations: ["reviews"],
       });
+      await this.CachService.set(cached_key, products);
+
       return products;
     } catch (err) {
       throw new Error("Failed to fetch products: " + err);
@@ -117,6 +132,9 @@ export class AdminService {
 
   async FindProduct(id: string): Promise<Product> {
     try {
+      const cached_key = `product:${id}`;
+      const cached = await this.CachService.get<Product>(cached_key);
+      if (cached) return cached;
       const product = await this.ProductRepo.findOne({
         where: { id },
         relations: ["reviews"],
@@ -124,6 +142,8 @@ export class AdminService {
       if (!product) {
         throw new NotFoundException(`Product with id ${id} not found`);
       }
+      await this.CachService.set(cached_key, product);
+
       return product;
     } catch (err) {
       if (err instanceof HttpException) {
@@ -221,17 +241,27 @@ export class AdminService {
     }
   }
   async Find_Cart(id: string): Promise<Cart> {
+    const cached_key = `cart:${id}`;
+    const cached = await this.CachService.get<Cart>(cached_key);
+    if (cached) return cached;
     const cart = await this.CartRepo.findOneBy({ id });
     if (!cart) {
       throw new NotFoundException("cart not found");
     }
+    await this.CachService.set(cached_key, cart);
+
     return cart;
   }
   async Find_CartItem(id: string): Promise<CartItem> {
+    const cached_key = `cartitem:${id}`;
+    const cached = await this.CachService.get<CartItem>(cached_key);
+    if (cached) return cached;
     const cartItem = await this.CartItem.findOneBy({ id });
     if (!cartItem) {
       throw new NotFoundException("no cart Item");
     }
+    await this.CachService.set(cached_key, cartItem);
+
     return cartItem;
   }
 }

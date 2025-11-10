@@ -13,6 +13,8 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from "@nestjs/common";
+import { CacheModule } from "@nestjs/cache-manager";
+import { CachService } from "../cach/cach.service";
 
 type MockType<T> = {
   [P in keyof T]?: jest.Mock<unknown>;
@@ -40,8 +42,10 @@ describe("AdminService", () => {
 
   beforeEach(async () => {
     moduleRef = await Test.createTestingModule({
+      imports: [CacheModule.register()],
       providers: [
         AdminService,
+        CachService,
         {
           provide: getRepositoryToken(User),
           useFactory: repositoryMockFactory,
