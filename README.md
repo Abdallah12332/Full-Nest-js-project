@@ -52,7 +52,7 @@ A complete project using **NestJS** for a user and record management application
 
 ```env
 EMAIL=""
-PASSWORD=""
+PASSWORD="" # from gmail
 JWT_SECRET=""
 JWT_EXPIRES_ACCESSTOKEN=""
 JWT_EXPIRES_REFRESHTOKEN=""
@@ -64,14 +64,20 @@ DB_HOST=""
 DB_PORT=
 DB_USER=""
 DB_NAME=""
-// development
+# development
 DB_POOL_SIZE=
-// production
-// DB_POOL_SIZE=
+# production
+# DB_POOL_SIZE=
 CORS=""
 PORT=
-eviroment=""
 
+NODE_ENV="Development"
+
+SSL_KEY_PATH="./secrets/private-key.pem"
+SSL_CERT_PATH="./secrets/certificate.pem"
+REDIS_HOST=""
+REDIS_PORT=
+REDIS_TTL=
 ```
   
 ### البدأ في المشروع
