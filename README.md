@@ -67,7 +67,7 @@ DB_NAME=""
 # development
 DB_POOL_SIZE=
 # production
-# DB_POOL_SIZE=
+# DB_POOL_SIZE=50
 CORS=""
 PORT=
 
